@@ -33,7 +33,7 @@ if submit:
     tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.MolGraphConvFeaturizer(use_edges=True))
     st.write("Featurized!")
     model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification', 
-										learning_rate=0.001, random_state=2, model_dir='AFPmodels')
+										learning_rate=0.001, random_state=2, model_dir='AFPmodel')
     model_reload.restore()
     st.write("Model reloaded!")
 
