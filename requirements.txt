@@ -1,6 +1,4 @@
-deepchem[tensorflow]
-deepchem[torch]
-deepchem[jax]
+deepchem
 mmpdb
 dgl
 dgllife
