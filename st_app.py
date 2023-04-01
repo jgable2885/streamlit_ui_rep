@@ -75,29 +75,34 @@ if submit:
 	ideas_df['toxicity_counts'] = toxicity_counts
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	
-	genre = st.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 	
-	if genre == '3':
-		st.write("Let's see ", genre, " alternative ideas!")
+	form2 = st.form(key='2nd-form')
+	genre = form2.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 
-		idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:3]]
-		idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-		grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:3])
-		grid_img.save("tmp_grid.png")
-		st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
-	elif genre == '2':
-		st.write("Let's see ", genre, " alternative ideas!")
+	submit2 = form2.form_submit_button('Submit choice')
+	
+	if submit2:
+		if genre == '3':
+			st.write("Let's see ", genre, " alternative ideas!")
 
-		idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:2]]
-		idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-		grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:2])
-		grid_img.save("tmp_grid.png")
-		st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
-	elif genre == '1':
-		st.write("Let's see ", genre, " alternative ideas!")
+			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:3]]
+			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
+			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:3])
+			grid_img.save("tmp_grid.png")
+			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
+		elif genre == '2':
+			st.write("Let's see ", genre, " alternative ideas!")
 
-		idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:1]]
-		idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-		grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:1])
-		grid_img.save("tmp_grid.png")
-		st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
+			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:2]]
+			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
+			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:2])
+			grid_img.save("tmp_grid.png")
+			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
+		elif genre == '1':
+			st.write("Let's see ", genre, " alternative ideas!")
+
+			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:1]]
+			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
+			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:1])
+			grid_img.save("tmp_grid.png")
+			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
