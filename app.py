@@ -88,7 +88,7 @@ if st.session_state['button'] == True:
 	ideas_df['toxicity_counts'] = toxicity_counts
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	
-	if st.button('Check 2'):
+	if st.button('Submit button 2'):
 		st.write("Do your logic here")
 		#form2 = st.form(key='2nd-form')
 		genre = st.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
