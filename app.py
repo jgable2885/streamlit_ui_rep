@@ -4,11 +4,10 @@ import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import Draw
 from itertools import islice
-#from IPython.display import Image, display
 from PIL import Image
 from rdkit.Chem.Draw import MolsToGridImage
 from mmpdb_ideas import generate_ideas
-#from stqdm import stqdm
+import numpy as np
 import numpy as np
 
 st.write('Hello, this is a Streamlit test')
@@ -29,14 +28,13 @@ if submit:
     Draw.MolToFile(mol, filename)
     st.image(Image.open(filename),caption='Compound structure')
 
-    st.write("Your predicted tox scores are:")
+    
     tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.MolGraphConvFeaturizer(use_edges=True))
-#    tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.ConvMolFeaturizer())
-#     model_reload = dc.models.GraphConvModel(len(tox21_tasks3), mode="classification", model_dir="model")
-#     model_reload.restore()
+    st.write("Featurized!")
     model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification', 
 										learning_rate=0.001, random_state=2, model_dir='AFPmodel')
     model_reload.restore()
+    st.write("Model reloaded!")
 
     smiles = [input_smile]
     featurizer3 = dc.feat.MolGraphConvFeaturizer(use_edges=True)
@@ -57,7 +55,15 @@ if submit:
     st.table(preds_df.loc[:,['Assay','tox_class', 'Prob Tox']])
     input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
     st.write("{} predictions suggest toxicity".format(input_tox_count))
-    #st.table(pd.DataFrame(preds[0], columns=['Prob Tox','Prob False']))
+    
+    chart_data = pd.DataFrame(
+    preds_df['Assay','tox_class','Prob Tox'],
+    columns=['Assay','tox_class', 'Prob Tox'])
+
+    chart = alt.Chart(chart_data).mark_bar().encode(
+	x='Prob Tox:Q', y='Assay:N',tooltip=['Assay','tox_class', 'Prob Tox'])
+
+    st.altair_chart(chart, use_container_width=True)
 
     ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
     ideas_df.reset_index(inplace=True)
