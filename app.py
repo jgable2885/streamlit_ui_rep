@@ -22,15 +22,6 @@ def get_tox_class(prob_true):
 	
 st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
-button1 = st.button('Recommend')
-if st.session_state.get('button') != True:
-    st.session_state['button'] = button1 # Saved the state
-
-if st.session_state['button'] == True:
-    st.write("button1 is True")
-    if st.button('Check 2'):
-        st.write("Do your logic here")
-
 #form = st.form(key='my-form')
 input_smile = st.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
