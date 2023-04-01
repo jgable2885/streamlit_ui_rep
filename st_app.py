@@ -49,7 +49,7 @@ st.write('Press submit to have your molecule displayed below')
 
 if submit:
 	st.write("Your compound of interest is: ", input_smile)
-
+	st.write(st.session_state.stage)
 	mol = Chem.MolFromSmiles(input_smile)
 
 	filename = "%s%d.png" % ("test", 0)
@@ -99,8 +99,9 @@ if st.session_state.stage > 0:
 	genre = form2.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 
 	submit2 = form2.form_submit_button('Submit choice', on_click=set_stage, args=(2,))
-
-	if submit2:
+	st.write(st.session_state.stage)
+	
+	if st.session_state.stage>1:
 		if genre == '3':
 			st.write("Let's see ", genre, " alternative ideas!")
 			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:3]]
