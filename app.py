@@ -31,34 +31,17 @@ if st.session_state['button'] == True:
     if st.button('Check 2'):
         st.write("Do your logic here")
 
-if 'stage' not in st.session_state:
-    st.session_state.stage = 0
-
-def set_stage(stage):
-    st.session_state.stage = stage
-
-#Use session_state for nested submit forms
-st.button('First Button', on_click=set_stage, args=(1,))
-
-if st.session_state.stage > 0:
-    # Some code
-    st.button('Second Button', on_click=set_stage, args=(2,))
-if st.session_state.stage > 1:
-    # More code, etc
-    st.button('Third Button', on_click=set_stage, args=(3,))
-if st.session_state.stage > 2:
-    st.write('The end')
-st.button('Reset', on_click=set_stage, args=(0,))
-st.write('Current session_state.stage: ', st.session_state.stage)
-	 
-form = st.form(key='my-form')
-input_smile = form.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
+#form = st.form(key='my-form')
+input_smile = st.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
 st.write('Press submit to have your molecule displayed below')
-submit = form.form_submit_button('Submit', on_click=set_stage, args=(1,))
-st.write('Current session_state.stage: ', st.session_state.stage)
+button1 = st.button('Submit button 1')
+#submit = form.form_submit_button('Submit', on_click=set_stage, args=(1,))
+if st.session_state.get('button') != True:
+	st.session_state['button'] = button1 # Saved the state
 
-if submit:
+if st.session_state['button'] == True:
+	st.write("button1 is True")
 	st.write("Your compound of interest is: ", input_smile)
 	st.write('Current session_state.stage after submit: ', st.session_state.stage)
 	mol = Chem.MolFromSmiles(input_smile)
@@ -105,12 +88,13 @@ if submit:
 	ideas_df['toxicity_counts'] = toxicity_counts
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	
-	if st.session_state.stage > 0:
-		form2 = st.form(key='2nd-form')
-		genre = form2.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
+	if st.button('Check 2'):
+		st.write("Do your logic here")
+		#form2 = st.form(key='2nd-form')
+		genre = st.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 
-		submit2 = form2.form_submit_button('Submit choice', on_click=set_stage, args=(2,))
-		st.write('Current session_state.stage after submit2: ', st.session_state.stage)
+		#submit2 = form2.form_submit_button('Submit choice', on_click=set_stage, args=(2,))
+		#st.write('Current session_state.stage after submit2: ', st.session_state.stage)
 		
 		if genre == '3':
 			st.write("Let's see ", genre, " alternative ideas!")
