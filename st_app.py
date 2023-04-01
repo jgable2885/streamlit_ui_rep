@@ -69,7 +69,7 @@ if submit:
 	form2 = st.form(key='second-form')
 	genre = form2.radio("How many new ideas would you like to generate?",('1', '2', '3'))
 	submit2 = form2.form_submit_button('Submit now')
-	if submitted:
+	if submit2:
 		st.write("Let's see ", genre, " alternative ideas!")
 		ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
 		ideas_df.reset_index(inplace=True)
