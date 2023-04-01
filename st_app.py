@@ -10,6 +10,7 @@ from rdkit.Chem.Draw import MolsToGridImage
 from mmpdb_ideas import generate_ideas
 #from stqdm import stqdm
 import numpy as np
+import altair as alt
 
 st.write('Hello, this is a Streamlit test')
 
@@ -44,7 +45,7 @@ if submit:
     preds = model_reload.predict_on_batch(new_smile3, transformers=transformers3)
     preds_df = pd.DataFrame(preds[0], columns=['Prob False','Prob Tox'])
     preds_df['Assay'] = tox21_tasks3
-    #preds_df.set_index('Assay')
+    
     def get_tox_class(prob_true):
       if prob_true > 0.6:
         return "Likely toxic"
@@ -56,7 +57,13 @@ if submit:
     st.table(preds_df.loc[:,['Assay','tox_class', 'Prob Tox']])
     input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
     st.write("{} predictions suggest toxicity".format(input_tox_count))
-    #st.table(pd.DataFrame(preds[0], columns=['Prob Tox','Prob False']))
+    
+    chart_data = pd.DataFrame(
+    preds_df[['Assay','tox_class','Prob Tox']],
+    columns=['Assay','tox_class', 'Prob Tox'])
+
+    chart = alt.Chart(chart_data).mark_bar(color='darkred').encode(x='Prob Tox:Q', y='Assay:N', tooltip=['Assay','tox_class', 'Prob Tox'])
+    st.altair_chart(chart, use_container_width=True) 
 
     ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
     ideas_df.reset_index(inplace=True)
