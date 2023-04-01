@@ -87,12 +87,11 @@ if st.session_state['button'] == True:
 	toxicity_counts = [np.sum(pred>0.6) for pred in idea_preds[:,:,1]]
 	ideas_df['toxicity_counts'] = toxicity_counts
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
+	genre = st.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 	
 	if st.button('Submit button 2'):
 		st.write("Do your logic here")
 		#form2 = st.form(key='2nd-form')
-		genre = st.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
-
 		#submit2 = form2.form_submit_button('Submit choice', on_click=set_stage, args=(2,))
 		#st.write('Current session_state.stage after submit2: ', st.session_state.stage)
 		
