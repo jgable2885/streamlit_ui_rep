@@ -66,10 +66,10 @@ if submit:
 		tooltip=['Assay','tox_class', 'Prob Tox'])
 	st.altair_chart(chart, use_container_width=True) 
 	
-form2 = st.form(key='second-form')
-genre = form2.radio("How many new ideas would you like to generate?",('1', '2', '3'))
-submit2 = form2.form_submit_button('Submit now')
-if submit2:
+#form2 = st.form(key='second-form')
+genre = st.radio("How many new ideas would you like to generate?",('1', '2', '3'))
+#submit2 = form2.form_submit_button('Submit now')
+if genre == '1':
 	st.write("Let's see ", genre, " alternative ideas!")
 	ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
 	ideas_df.reset_index(inplace=True)
