@@ -75,7 +75,7 @@ if submit:
 	ideas_df['toxicity_counts'] = toxicity_counts
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	
-	genre = st.radio("How many new ideas would you like to generate?",('1', '2', '3'))
+	genre = st.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 	
 	if genre == '3':
 		st.write("Let's see ", genre, " alternative ideas!")
