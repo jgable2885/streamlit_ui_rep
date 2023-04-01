@@ -62,7 +62,10 @@ if submit:
     preds_df[['Assay','tox_class','Prob Tox']],
     columns=['Assay','tox_class', 'Prob Tox'])
 
-    chart = alt.Chart(chart_data).mark_bar(color='darkred').encode(x='Prob Tox:Q', y='Assay:N', tooltip=['Assay','tox_class', 'Prob Tox'])
+    chart = alt.Chart(chart_data, title="Tox Predictions for Your Input Molecule").mark_bar(color='darkred').encode(
+	    x = alt.X('Prob Tox:Q', scale=alt.Scale(domain=[0, 1.0])),
+	    y='Assay:N', 
+	    tooltip=['Assay','tox_class', 'Prob Tox'])
     st.altair_chart(chart, use_container_width=True) 
 
     ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
