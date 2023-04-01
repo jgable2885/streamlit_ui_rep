@@ -40,18 +40,18 @@ if st.session_state.stage > 1:
 if st.session_state.stage > 2:
     st.write('The end')
 st.button('Reset', on_click=set_stage, args=(0,))
-st.write('Current session_state.stage: ", st.session_state.stage)
+st.write('Current session_state.stage: ', st.session_state.stage)
 	 
 form = st.form(key='my-form')
 input_smile = form.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
 st.write('Press submit to have your molecule displayed below')
 submit = form.form_submit_button('Submit', on_click=set_stage, args=(1,))
-st.write('Current session_state.stage: ", st.session_state.stage)
+st.write('Current session_state.stage: ', st.session_state.stage)
 
 if submit:
 	st.write("Your compound of interest is: ", input_smile)
-	st.write('Current session_state.stage: ", st.session_state.stage)
+	st.write('Current session_state.stage after submit: ", st.session_state.stage)
 	mol = Chem.MolFromSmiles(input_smile)
 
 	filename = "%s%d.png" % ("test", 0)
@@ -101,7 +101,7 @@ if submit:
 		genre = form2.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 
 		submit2 = form2.form_submit_button('Submit choice', on_click=set_stage, args=(2,))
-		st.write('Current session_state.stage: ", st.session_state.stage)
+		st.write('Current session_state.stage after submit: ', st.session_state.stage)
 
 		if st.session_state.stage > 1:
 			if genre == '3':
