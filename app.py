@@ -8,7 +8,7 @@ from PIL import Image
 from rdkit.Chem.Draw import MolsToGridImage
 from mmpdb_ideas import generate_ideas
 import numpy as np
-import numpy as np
+import altair as alt
 
 st.write('Hello, this is a Streamlit test')
 
@@ -28,7 +28,6 @@ if submit:
     Draw.MolToFile(mol, filename)
     st.image(Image.open(filename),caption='Compound structure')
 
-    
     tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.MolGraphConvFeaturizer(use_edges=True))
     st.write("Featurized!")
     model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification', 
@@ -43,7 +42,7 @@ if submit:
     preds = model_reload.predict_on_batch(new_smile3, transformers=transformers3)
     preds_df = pd.DataFrame(preds[0], columns=['Prob False','Prob Tox'])
     preds_df['Assay'] = tox21_tasks3
-    #preds_df.set_index('Assay')
+
     def get_tox_class(prob_true):
       if prob_true > 0.6:
         return "Likely toxic"
@@ -57,7 +56,7 @@ if submit:
     st.write("{} predictions suggest toxicity".format(input_tox_count))
     
     chart_data = pd.DataFrame(
-    preds_df['Assay','tox_class','Prob Tox'],
+    preds_df[['Assay','tox_class','Prob Tox']],
     columns=['Assay','tox_class', 'Prob Tox'])
 
     chart = alt.Chart(chart_data).mark_bar().encode(
