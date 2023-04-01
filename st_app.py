@@ -101,10 +101,10 @@ if submit:
 		genre = form2.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 
 		submit2 = form2.form_submit_button('Submit choice', on_click=set_stage, args=(2,))
-		st.write('Current session_state.stage after submit: ', st.session_state.stage)
+		st.write('Current session_state.stage after submit2: ', st.session_state.stage)
 
 		if st.session_state.stage > 1:
-			if genre == '3':
+			if genre == 3:
 				st.write("Let's see ", genre, " alternative ideas!")
 				idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:3]]
 				idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
