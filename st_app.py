@@ -51,7 +51,7 @@ st.write('Current session_state.stage: ', st.session_state.stage)
 
 if submit:
 	st.write("Your compound of interest is: ", input_smile)
-	st.write('Current session_state.stage after submit: ", st.session_state.stage)
+	st.write('Current session_state.stage after submit: ', st.session_state.stage)
 	mol = Chem.MolFromSmiles(input_smile)
 
 	filename = "%s%d.png" % ("test", 0)
