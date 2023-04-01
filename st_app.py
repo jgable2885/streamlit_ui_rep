@@ -12,7 +12,15 @@ from mmpdb_ideas import generate_ideas
 import numpy as np
 import altair as alt
 
-st.write('Hello, this is a Streamlit test')
+def get_tox_class(prob_true):
+	if prob_true > 0.6:
+		return "Likely toxic"
+	elif prob_true < 0.4:
+		return "Likely non-toxic"
+	else:
+		return "Inconclusive"
+	
+st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
 form = st.form(key='my-form')
 input_smile = form.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
@@ -45,13 +53,6 @@ if submit:
 	preds_df = pd.DataFrame(preds[0], columns=['Prob False','Prob Tox'])
 	preds_df['Assay'] = tox21_tasks3
 
-	def get_tox_class(prob_true):
-		if prob_true > 0.6:
-			return "Likely toxic"
-		elif prob_true < 0.4:
-			return "Likely non-toxic"
-	      	else:
-			return "Inconclusive"
 	preds_df['tox_class'] = preds_df['Prob Tox'].apply(get_tox_class)
 	st.table(preds_df.loc[:,['Assay','tox_class', 'Prob Tox']])
 	input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
@@ -67,7 +68,6 @@ if submit:
 	with st.form("second_form"):
 		st.write("Inside the form")
 		genre = st.radio("How many new ideas would you like to generate?",('1', '2', '3'))
-
 		submitted = st.form_submit_button("Submit")
 		if submitted:
 			st.write("idea number: ", genre)
