@@ -29,14 +29,13 @@ if submit:
     Draw.MolToFile(mol, filename)
     st.image(Image.open(filename),caption='Compound structure')
 
-    st.write("Your predicted tox scores are:")
+    
     tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.MolGraphConvFeaturizer(use_edges=True))
-#    tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.ConvMolFeaturizer())
-#     model_reload = dc.models.GraphConvModel(len(tox21_tasks3), mode="classification", model_dir="model")
-#     model_reload.restore()
+    st.write("Featurized!")
     model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification', 
 										learning_rate=0.001, random_state=2, model_dir='AFPmodels')
     model_reload.restore()
+    st.write("Model reloaded!")
 
     smiles = [input_smile]
     featurizer3 = dc.feat.MolGraphConvFeaturizer(use_edges=True)
