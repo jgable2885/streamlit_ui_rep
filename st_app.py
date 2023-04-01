@@ -94,7 +94,7 @@ if submit:
 	ideas_df['toxicity_counts'] = toxicity_counts
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	
-	if st.session_state.stage > 1:
+	if st.session_state.stage > 0:
 		form2 = st.form(key='2nd-form', on_click=set_stage, args=(2,))
 		genre = form2.radio("How many new ideas would you like to generate?",('None', '1', '2', '3'))
 
