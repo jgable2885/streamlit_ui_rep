@@ -85,7 +85,7 @@ if submit:
 		grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:3])
 		grid_img.save("tmp_grid.png")
 		st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
-	elseif genre == '2':
+	elif genre == '2':
 		st.write("Let's see ", genre, " alternative ideas!")
 
 		idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:2]]
@@ -93,7 +93,7 @@ if submit:
 		grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:2])
 		grid_img.save("tmp_grid.png")
 		st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
-	elseif genre == '1':
+	elif genre == '1':
 		st.write("Let's see ", genre, " alternative ideas!")
 
 		idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:1]]
