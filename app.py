@@ -64,7 +64,7 @@ if st.session_state['button'] == True:
 	chart_data = pd.DataFrame(preds_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
 
 	chart = alt.Chart(chart_data, title="Tox Predictions for Your Input Molecule").mark_bar(color='darkred').encode(
-		x = alt.X('Prob Tox:Q', scale=alt.Scale(domain=[0, 1.0]), axis=alt.Axis(format='%')),
+		x = alt.X('Prob Tox:Q', scale=alt.Scale(domain=[0, 1.0]), axis=alt.Axis(format='%'), title='Probability of Toxicity'),
 		y='Assay Name:N', 
 		tooltip=['Assay Name','Toxicity Class', 'Probability of Toxicity'])
 	st.altair_chart(chart, use_container_width=True) 
