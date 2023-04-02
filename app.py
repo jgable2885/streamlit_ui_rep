@@ -34,7 +34,7 @@ if st.session_state.get('button') != True:
 if st.session_state['button'] == True:
 	st.write("button1 is True")
 	st.write("Your compound of interest is: ", input_smile)
-	st.write('Current session_state.stage after submit: ', st.session_state.stage)
+	#st.write('Current session_state.stage after submit: ', st.session_state.stage)
 	mol = Chem.MolFromSmiles(input_smile)
 
 	filename = "%s%d.png" % ("test", 0)
