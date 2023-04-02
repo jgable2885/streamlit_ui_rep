@@ -53,10 +53,10 @@ if st.session_state['button'] == True:
 	preds = model_reload.predict_on_batch(new_smile3, transformers=transformers3)
 	preds_df = pd.DataFrame(preds[0], columns=['Prob False','Prob Tox'])
 	preds_df['Assay'] = tox21_tasks3
-	preds_df['Prob Tox'] = preds_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
+	preds_df['Probability of Toxicity'] = preds_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
 
 	preds_df['tox_class'] = preds_df['Prob Tox'].apply(get_tox_class)
-	st.table(preds_df.loc[:,['Assay','tox_class', 'Prob Tox']])
+	st.table(preds_df.loc[:,['Assay','tox_class', 'Probability of Toxicity']])
 	input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
 	st.write("{} predictions suggest toxicity".format(input_tox_count))
 
