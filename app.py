@@ -4,11 +4,9 @@ import pandas as pd
 from rdkit import Chem
 from rdkit.Chem import Draw
 from itertools import islice
-#from IPython.display import Image, display
 from PIL import Image
 from rdkit.Chem.Draw import MolsToGridImage
 from mmpdb_ideas import generate_ideas
-#from stqdm import stqdm
 import numpy as np
 import altair as alt
 
@@ -22,19 +20,18 @@ def get_tox_class(prob_true):
 	
 st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
-#form = st.form(key='my-form')
 input_smile = st.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
 st.write('Press submit to have your molecule displayed below')
 button1 = st.button('Submit button 1')
-#submit = form.form_submit_button('Submit', on_click=set_stage, args=(1,))
+
 if st.session_state.get('button') != True:
 	st.session_state['button'] = button1 # Saved the state
 
 if st.session_state['button'] == True:
 	st.write("button1 is True")
 	st.write("Your compound of interest is: ", input_smile)
-	#st.write('Current session_state.stage after submit: ', st.session_state.stage)
+	
 	mol = Chem.MolFromSmiles(input_smile)
 
 	filename = "%s%d.png" % ("test", 0)
@@ -82,11 +79,9 @@ if st.session_state['button'] == True:
 	
 	if st.button('Submit button 2'):
 		st.write("Do your logic here")
-		#form2 = st.form(key='2nd-form')
-		#submit2 = form2.form_submit_button('Submit choice', on_click=set_stage, args=(2,))
-		#st.write('Current session_state.stage after submit2: ', st.session_state.stage)
-		
-		if genre == '3':
+		if genre == 'None':
+			st.write("You have opted out for alternative candidate generation.")
+		elif genre == '3':
 			st.write("Let's see ", genre, " alternative ideas!")
 			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:3]]
 			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
