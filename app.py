@@ -55,7 +55,7 @@ if st.session_state['button'] == True:
 	preds_df['Assay Name'] = tox21_tasks3
 	preds_df['Probability of Toxicity'] = preds_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
 	preds_df['tox_class'] = preds_df['Prob Tox'].apply(get_tox_class)
-	preds_df = preds_df.rename(columns= {'tox_class':'Toxicity Class'}, inplace = True)
+	preds_df.rename(columns= {'tox_class':'Toxicity Class'}, inplace = True)
 	
 	st.table(preds_df.loc[:,['Assay Name','Toxicity Class', 'Probability of Toxicity']])
 	input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
