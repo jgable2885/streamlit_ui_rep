@@ -53,6 +53,7 @@ if st.session_state['button'] == True:
 	preds = model_reload.predict_on_batch(new_smile3, transformers=transformers3)
 	preds_df = pd.DataFrame(preds[0], columns=['Prob False','Prob Tox'])
 	preds_df['Assay'] = tox21_tasks3
+	preds_df['Prob Tox'] = preds_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
 
 	preds_df['tox_class'] = preds_df['Prob Tox'].apply(get_tox_class)
 	st.table(preds_df.loc[:,['Assay','tox_class', 'Prob Tox']])
@@ -62,7 +63,7 @@ if st.session_state['button'] == True:
 	chart_data = pd.DataFrame(preds_df[['Assay','tox_class','Prob Tox']], columns=['Assay','tox_class', 'Prob Tox'])
 
 	chart = alt.Chart(chart_data, title="Tox Predictions for Your Input Molecule").mark_bar(color='darkred').encode(
-		x = alt.X('Prob Tox:Q', scale=alt.Scale(domain=[0, 1.0])),
+		x = alt.X('Prob Tox:Q', scale=alt.Scale(domain=[0, 1.0]), axis=alt.Axis(format='%')),
 		y='Assay:N', 
 		tooltip=['Assay','tox_class', 'Prob Tox'])
 	st.altair_chart(chart, use_container_width=True) 
