@@ -6,6 +6,7 @@ from rdkit.Chem import Draw
 from itertools import islice
 from PIL import Image
 from rdkit.Chem.Draw import MolsToGridImage
+from rdkit.Chem import MolFromSmarts
 from mmpdb_ideas import generate_ideas
 import numpy as np
 import altair as alt
@@ -17,7 +18,27 @@ def get_tox_class(prob_true):
 		return "Likely non-toxic"
 	else:
 		return "Inconclusive"
-	
+
+def get_highlights(pattern, molecule):
+    ## adapted from https://www.rdkit.org/docs/GettingStartedInPython.html
+    if isinstance(molecule, str):
+        mol = MolFromSmiles(molecule)
+    elif isinstance(molecule, Chem.rdchem.Mol):
+        mol = molecule
+    else:
+        raise TypeError('molecule must be either a smiles string or rdkit.Chem.rdchem.Mol object')
+    if isinstance(pattern, str):
+        patt = MolFromSmarts(pattern)
+    else:
+        raise TypeError('pattern must be a SMARTS or SMILES string')
+    hit_ats = list(mol.GetSubstructMatch(patt))
+    hit_bonds = []
+    for bond in patt.GetBonds():
+        aid1 = hit_ats[bond.GetBeginAtomIdx()]
+        aid2 = hit_ats[bond.GetEndAtomIdx()]
+        hit_bonds.append(mol.GetBondBetweenAtoms(aid1, aid2).GetIdx())
+    return hit_ats, hit_bonds
+
 st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
 input_smile = st.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
@@ -83,24 +104,45 @@ if st.session_state['button'] == True:
 		st.write("Do your logic here")
 		if genre == 'None':
 			st.write("You have opted out for alternative candidate generation.")
+		elif genre == '5':
+			st.write("Let's see ", genre, " alternative ideas!")		
+			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:5]]
+			idea_patts = [p for p in ideas_df['pCC50_to_smiles']]
+			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
+			idea_hit_atoms = []
+			idea_hit_bonds = []
+			for p,m in zip(idea_patts, idea_mols):
+				hit_ats, hit_bonds = get_highlights(p,m)
+				idea_hit_atoms.append(hit_ats)
+				idea_hit_bonds.append(hit_bonds)
+			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:3], highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
+			grid_img.save("tmp_grid.png")
+			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
 		elif genre == '3':
 			st.write("Let's see ", genre, " alternative ideas!")
 			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:3]]
+			idea_patts = [p for p in ideas_df['pCC50_to_smiles']]
 			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:3])
-			grid_img.save("tmp_grid.png")
-			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
-		elif genre == '2':
-			st.write("Let's see ", genre, " alternative ideas!")
-			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:2]]
-			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:2])
+			idea_hit_atoms = []
+			idea_hit_bonds = []
+			for p,m in zip(idea_patts, idea_mols):
+				hit_ats, hit_bonds = get_highlights(p,m)
+				idea_hit_atoms.append(hit_ats)
+				idea_hit_bonds.append(hit_bonds)
+			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:2], highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
 			grid_img.save("tmp_grid.png")
 			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
 		elif genre == '1':
 			st.write("Let's see ", genre, " alternative ideas!")
 			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:1]]
+			idea_patts = [p for p in ideas_df['pCC50_to_smiles']]
 			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:1])
+			idea_hit_atoms = []
+			idea_hit_bonds = []
+			for p,m in zip(idea_patts, idea_mols):
+				hit_ats, hit_bonds = get_highlights(p,m)
+				idea_hit_atoms.append(hit_ats)
+				idea_hit_bonds.append(hit_bonds)
+			grid_img = Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:1], highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
 			grid_img.save("tmp_grid.png")
 			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
