@@ -85,7 +85,7 @@ if st.session_state['button'] == True:
 	match_found, data = find_tox21_match(smiles[0])
 	if match_found == True:
 		st.write('Exact match found, returning experimental results not predictions')
-		exp_df = data.T.drop('SMILES')
+		exp_df = data.T.drop('SMILES', inplace=True)
 		exp_df.reset_index(inplace=True)
 		exp_df.columns = ['Assay Name', 'Prob Tox']
 		exp_df['Probability of Toxicity'] = exp_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
