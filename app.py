@@ -91,7 +91,7 @@ if st.session_state['button'] == True:
 		exp_df['tox_class'] = exp_df['Prob Tox'].apply(get_tox_class)
 		exp_df.rename(columns={'tox_class':'Toxicity Class'}, inplace=True)
 		
-		st.table(exp_Df.loc[:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
+		st.table(exp_df.loc[:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
 		chart_data = pd.DataFrame(exp_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
 								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
 
