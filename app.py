@@ -100,17 +100,17 @@ if st.session_state['button'] == True:
 	match_found, data = find_tox21_match(smiles[0], tox21_y_data)
 	if match_found == True:
 		st.write('Exact match found, returning experimental results not predictions')
-		exp_df = data.T.drop('SMILES')
+		exp_df = data.T.drop('SMILES','fp','Unnamed: 0')
 		exp_df.reset_index(inplace=True)
 		exp_df.columns = ['Assay Name', 'Prob Tox']
 		exp_df['Probability of Toxicity'] = exp_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
 		exp_df['tox_class'] = exp_df['Prob Tox'].apply(get_tox_class)
 		exp_df.rename(columns={'tox_class':'Toxicity Class'}, inplace=True)
 		
-		st.table(exp_df.loc[1:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
+		st.table(exp_df.loc[:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
 		chart_data = pd.DataFrame(exp_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
 								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
-		chart_data = chart_data.loc[1:,:]
+		chart_data = chart_data.loc[:,:]
 
 	else:
 	
