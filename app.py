@@ -95,6 +95,7 @@ if st.session_state['button'] == True:
 		st.table(exp_df.loc[1:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
 		chart_data = pd.DataFrame(exp_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
 								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
+		chart_data = chart_data.loc[1:,:]
 
 	else:
 	
