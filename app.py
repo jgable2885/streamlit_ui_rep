@@ -62,6 +62,13 @@ def load_tox21_data():
 def load_tox21_y_csv():
 	return pd.read_csv('./data/tox21_y_fromDeepChem.csv')
 
+@st.cache_data
+def generate_fingerprints(data, smiles_col='SMILES'):
+	mols = [Chem.MolFromSmiles(x) for x in data[smiles_col]]
+	fps = [Chem.RDKFingerPrint(x) for x in mols]
+	return fps
+	
+
 st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
 input_smile = st.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
