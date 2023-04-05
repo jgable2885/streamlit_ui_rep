@@ -88,6 +88,7 @@ if st.session_state['button'] == True:
 		exp_df = data.T.drop('SMILES')
 		exp_df.reset_index(inplace=True)
 		exp_df.columns = ['Assay Name', 'Prob Tox']
+		exp_df['Probability of Toxicity'] = exp_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
 		exp_df['tox_class'] = exp_df['Prob Tox'].apply(get_tox_class)
 		exp_df.rename(columns={'tox_class':'Toxicity Class'}, inplace=True)
 		
