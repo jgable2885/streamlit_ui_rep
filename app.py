@@ -42,7 +42,7 @@ def get_highlights(pattern, molecule):
 def find_tox21_match(query_smi, data='./data/tox21_y_fromDeepChem.csv', smiles_col='SMILES'):
 	tox21_y_df = pd.read_csv(data)
 	canonical_query = Chem.CanonSmiles(query_smi)
-	if len(tox21_y_df[tox21_y_df[smiles_col]]==canonical_query])>0:
+	if len(tox21_y_df[tox21_y_df[smiles_col]==canonical_query])>0:
 		return True, tox21_y_df[tox21_y_df[smiles_col]]==canonical_query]
 	else:
 		return False, []
