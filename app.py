@@ -47,18 +47,18 @@ def find_tox21_match(query_smi, data, smiles_col='SMILES'):
 	else:
 		return False, []
 
-@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None}
+@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
 def restore_model():
 	model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification',learning_rate=0.001, random_state=2, model_dir='AFPmodel')
 	model_reload.restore()
 	return model_reload
 
-@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None}
+@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
 def load_tox21_data():
 	tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.MolGraphConvFeaturizer(use_edges=True))
 	return tox21_tasks3, tox21_datasets3, transformers3
 	
-@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None}
+@st.cache(hash_funcs={"MyUnhashableClass": lambda _: None})
 def load_tox21_y_csv():
 	return pd.read_csv('./data/tox21_y_fromDeepChem.csv')
 
