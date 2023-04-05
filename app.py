@@ -39,15 +39,28 @@ def get_highlights(pattern, molecule):
         hit_bonds.append(mol.GetBondBetweenAtoms(aid1, aid2).GetIdx())
     return hit_ats, hit_bonds
 
-def find_tox21_match(query_smi, data='./data/tox21_y_fromDeepChem.csv', smiles_col='SMILES'):
-	tox21_y_df = pd.read_csv(data)
+def find_tox21_match(query_smi, data, smiles_col='SMILES'):
+	tox21_y_df = data
 	canonical_query = Chem.CanonSmiles(query_smi)
 	if len(tox21_y_df[tox21_y_df[smiles_col]==canonical_query])>0:
 		return True, tox21_y_df[tox21_y_df[smiles_col]==canonical_query]
 	else:
 		return False, []
 
+@st.cache
+def restore_model():
+	model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification',learning_rate=0.001, random_state=2, model_dir='AFPmodel')
+	model_reload.restore()
+	return model_reload
 
+@st.cache
+def load_tox21_data():
+	tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.MolGraphConvFeaturizer(use_edges=True))
+	return tox21_tasks3, tox21_datasets3, transformers3
+	
+@st.cache
+def load_tox21_y_csv():
+	return pd.read_csv('./data/tox21_y_fromDeepChem.csv')
 
 st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
@@ -71,10 +84,11 @@ if st.session_state['button'] == True:
 	st.image(Image.open(filename),caption='Compound structure')
 
 
-	tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.MolGraphConvFeaturizer(use_edges=True))
+	tox21_tasks3, tox21_datasets3, transformers3 = load_tox21_data()
 	st.write("Featurized!")
-	model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification',learning_rate=0.001, random_state=2, model_dir='AFPmodel')
-	model_reload.restore()
+	model_reload = restore_model()
+	#model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification',learning_rate=0.001, random_state=2, model_dir='AFPmodel')
+	#model_reload.restore()
 	st.write("Model reloaded!")
 
 	smiles = [input_smile]
@@ -82,7 +96,8 @@ if st.session_state['button'] == True:
 	new_smile3 = featurizer3.featurize(smiles)
 	
 	## Check whether input smiles exactly matches molecule in Tox21 dataset
-	match_found, data = find_tox21_match(smiles[0])
+	tox21_y_data = load_tox21_y_csv()
+	match_found, data = find_tox21_match(smiles[0], tox21_y_data)
 	if match_found == True:
 		st.write('Exact match found, returning experimental results not predictions')
 		exp_df = data.T.drop('SMILES')
