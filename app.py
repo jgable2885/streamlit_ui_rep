@@ -39,6 +39,16 @@ def get_highlights(pattern, molecule):
         hit_bonds.append(mol.GetBondBetweenAtoms(aid1, aid2).GetIdx())
     return hit_ats, hit_bonds
 
+def find_tox21_match(query_smi, data='./data/tox21_y_fromDeepChem.csv', smiles_col='SMILES'):
+	tox21_y_df = pd.read_csv(data)
+	canonical_query = Chem.CanonSmiles(query_smi)
+	if len(tox21_y_df[tox21_y_df[smiles_col]==canonical_query])>0:
+		return True, tox21_y_df[tox21_y_df[smiles_col]==canonical_query]
+	else:
+		return False, []
+
+
+
 st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
 input_smile = st.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
@@ -70,19 +80,35 @@ if st.session_state['button'] == True:
 	smiles = [input_smile]
 	featurizer3 = dc.feat.MolGraphConvFeaturizer(use_edges=True)
 	new_smile3 = featurizer3.featurize(smiles)
-
-	preds = model_reload.predict_on_batch(new_smile3, transformers=transformers3)
-	preds_df = pd.DataFrame(preds[0], columns=['Prob False','Prob Tox'])
-	preds_df['Assay Name'] = tox21_tasks3
-	preds_df['Probability of Toxicity'] = preds_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
-	preds_df['tox_class'] = preds_df['Prob Tox'].apply(get_tox_class)
-	preds_df.rename(columns= {'tox_class':'Toxicity Class'}, inplace = True)
 	
-	st.table(preds_df.loc[:,['Assay Name','Toxicity Class', 'Probability of Toxicity']])
-	input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
-	st.write("{} predictions suggest toxicity".format(input_tox_count))
+	## Check whether input smiles exactly matches molecule in Tox21 dataset
+	match_found, data = find_tox21_match(smiles[0])
+	if match_found == True:
+		st.write('Exact match found, returning experimental results not predictions')
+		exp_df = data.T.drop('SMILES')
+		exp_df.reset_index(inplace=True)
+		exp_df.columns = ['Assay Name', 'Prob Tox']
+		exp_df['tox_class'] = exp_df['Prob Tox'].apply(get_tox_class)
+		exp_df.rename(columns={'tox_class':'Toxicity Class'}, inplace=True)
+		
+		st.table(exp_Df.loc[:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
+		chart_data = pd.DataFrame(exp_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
+								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
 
-	chart_data = pd.DataFrame(preds_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
+	else:
+	
+		preds = model_reload.predict_on_batch(new_smile3, transformers=transformers3)
+		preds_df = pd.DataFrame(preds[0], columns=['Prob False','Prob Tox'])
+		preds_df['Assay Name'] = tox21_tasks3
+		preds_df['Probability of Toxicity'] = preds_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
+		preds_df['tox_class'] = preds_df['Prob Tox'].apply(get_tox_class)
+		preds_df.rename(columns= {'tox_class':'Toxicity Class'}, inplace = True)
+	
+		st.table(preds_df.loc[:,['Assay Name','Toxicity Class', 'Probability of Toxicity']])
+		input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
+		st.write("{} predictions suggest toxicity".format(input_tox_count))
+		chart_data = pd.DataFrame(preds_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
+								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
 
 	chart = alt.Chart(chart_data, title="Tox Predictions for Your Input Molecule").mark_bar(color='darkred').encode(
 		x = alt.X('Prob Tox:Q', scale=alt.Scale(domain=[0, 1.0]), axis=alt.Axis(format='%'), title='Probability of Toxicity'),
