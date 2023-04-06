@@ -122,7 +122,7 @@ if st.session_state['button'] == True:
 	sims = DataStructs.BulkTanimotoSimilarity(input_fp, fps)
 	tox21_y_data['sim'] = sims
 	tox21_y_data['toxicity_counts'] = tox21_y_data.loc[:,tox21_tasks3].sum(axis=1)
-	tox21_y_Data.sort_values(by=['toxicity_counts','sim'], ascending=[True, False], inplace=True)
+	tox21_y_data.sort_values(by=['toxicity_counts','sim'], ascending=[True, False], inplace=True)
 	
 	#ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	
