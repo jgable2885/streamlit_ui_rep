@@ -123,6 +123,17 @@ if st.session_state['button'] == True:
 	tox21_y_data['sim'] = sims
 	tox21_y_data['toxicity_counts'] = tox21_y_data.loc[:,tox21_tasks3].sum(axis=1)
 	tox21_y_data.sort_values(by=['toxicity_counts','sim'], ascending=[True, False], inplace=True)
+	sim_mols = [Chem.MolFromSmiles(x) for x in tox21_y_data['SMILES'][0:3]]
+	sim_legends = ["Experimental toxicities: {}".format(c) for c in tox21_y_data['toxicity_counts'][0:3]]
+	sim_grid = Chem.Draw.MolsToGridImage(sim_mols, legends=sim_legends)
+	sim_grid.save("sim_grid.png")
+	st.image(Image.open("sim_grid.png", caption='Top 3 most similar compounds from Tox21 database'))
+	
+# 	grid_img = Chem.Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:num_ideas], 
+# 										 highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
+# 	grid_img.save("tmp_grid.png")
+# 	st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
+	
 	
 	#ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	
@@ -181,45 +192,11 @@ if st.session_state['button'] == True:
 		elif genre == '5':
 			st.write("Let's see ", genre, " alternative ideas!")
 			display_idea_grid(ideas_df, int(genre))	
-# 			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:5]]
-# 			idea_patts = [p for p in ideas_df['pCC50_to_smiles']]
-# 			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-# 			idea_hit_atoms = []
-# 			idea_hit_bonds = []
-# 			for p,m in zip(idea_patts, idea_mols):
-# 				hit_ats, hit_bonds = get_highlights(p,m)
-# 				idea_hit_atoms.append(hit_ats)
-# 				idea_hit_bonds.append(hit_bonds)
-# 			grid_img = Chem.Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:5], highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
-# 			grid_img.save("tmp_grid.png")
-# 			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
+
 		elif genre == '3':
 			st.write("Let's see ", genre, " alternative ideas!")
 			display_idea_grid(ideas_df, int(genre))	
-# 			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:3]]
-# 			idea_patts = [p for p in ideas_df['pCC50_to_smiles']]
-# 			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-# 			idea_hit_atoms = []
-# 			idea_hit_bonds = []
-# 			for p,m in zip(idea_patts, idea_mols):
-# 				hit_ats, hit_bonds = get_highlights(p,m)
-# 				idea_hit_atoms.append(hit_ats)
-# 				idea_hit_bonds.append(hit_bonds)
-# 			grid_img = Chem.Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:3], highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
-# 			grid_img.save("tmp_grid.png")
-# 			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
+
 		elif genre == '1':
 			st.write("Let's see ", genre, " alternative ideas!")
 			display_idea_grid(ideas_df, int(genre))	
-# 			idea_mols = [Chem.MolFromSmiles(smi) for smi in ideas_df['SMILES'][0:1]]
-# 			idea_patts = [p for p in ideas_df['pCC50_to_smiles']]
-# 			idea_legends = ["Predicted toxicities: {}".format(count) for count in ideas_df['toxicity_counts']]
-# 			idea_hit_atoms = []
-# 			idea_hit_bonds = []
-# 			for p,m in zip(idea_patts, idea_mols):
-# 				hit_ats, hit_bonds = get_highlights(p,m)
-# 				idea_hit_atoms.append(hit_ats)
-# 				idea_hit_bonds.append(hit_bonds)
-# 			grid_img = Chem.Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:1], highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
-# 			grid_img.save("tmp_grid.png")
-# 			st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
