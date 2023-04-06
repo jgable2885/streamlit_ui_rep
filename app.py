@@ -122,7 +122,7 @@ if st.session_state['button'] == True:
 	sims = DataStructs.BulkTanimotoSimilarity(input_fp, fps)
 	tox21_y_data['sim'] = sims
 	tox21_y_data['toxicity_counts'] = tox21_y_data.loc[:,tox21_tasks3].sum(axis=1)
-	tox21_y_data.sort_values(by=['sim','toxicity_count'], ascending=[False, True], inplace=True)
+	tox21_y_data.sort_values(by=['sim','toxicity_counts'], ascending=[False, True], inplace=True)
 	sim_mols = [Chem.MolFromSmiles(x) for x in tox21_y_data['SMILES'][0:3]]
 	sim_legends = ["Experimental toxicities: {}".format(c) for c in tox21_y_data['toxicity_counts'][0:3]]
 	sim_grid = Chem.Draw.MolsToGridImage(sim_mols, legends=sim_legends)
