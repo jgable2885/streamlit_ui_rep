@@ -126,7 +126,7 @@ if st.session_state['button'] == True:
 	sim_mols = [Chem.MolFromSmiles(x) for x in tox21_y_data['SMILES'][0:3]]
 	sim_legends = ["Experimental toxicities: {}\nSimilarity to input: {:.2%}".format(c, s) 
 					for c, s in zip(tox21_y_data['toxicity_counts'][0:3], tox21_y_data['sim'][0:3])]
-	sim_grid = Chem.Draw.MolsToGridImage(sim_mols, legends=sim_legends)
+	sim_grid = Chem.Draw.MolsToGridImage(sim_mols, legends=sim_legends, subImgSize=(300,300))
 	sim_grid.save("sim_grid.png")
 	st.image(Image.open("sim_grid.png"), caption='Top 3 most similar compounds from Tox21 database')
 	
