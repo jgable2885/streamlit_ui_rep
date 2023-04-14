@@ -51,7 +51,7 @@ def restore_model():
 	model_reload.restore()
 	return model_reload
 
-@st.cache_data
+#@st.cache_data
 def load_tox21_data():
 	tox21_tasks3, tox21_datasets3, transformers3 = dc.molnet.load_tox21(featurizer=dc.feat.MolGraphConvFeaturizer(use_edges=True))
 	return tox21_tasks3, tox21_datasets3, transformers3
