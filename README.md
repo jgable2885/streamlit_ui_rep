@@ -77,6 +77,7 @@ Common issues that may occur during program execution:
 *Contributors names and contact info*
 
 Jonathan Gable @[UpdateEmail](gablejo@umich.edu)
+
 Amy Pei @[Email](luyingp@umich.edu)
 
 ## Version History
