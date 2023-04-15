@@ -28,14 +28,17 @@ The main libraries and frameworks used in this project include:
 * How/where to download your program
 * Any modifications needed to be made to files/folders
 * 
-All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this GitHub repository, to execute and reproduce the work in these, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment.
+All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. To install a package within the notebook environment, use the code below as an example: 
+```
+!pip install deepchem
+```
 
-Our work for last core component have been integrated and stored in the same repository on Github, which is actually required for publishing the user interface via Streamlit. This includes a main 'app.py' file that can deploy the app on the user interface via Streamlit Cloud along with all other files required for execution such as libraries and packages, pre-trained models, and pre-built algorithms. Detailed instructions for execution are provided in the next section.
+Our work on last core component has been integrated and stored in the same repository on Github, which is mandatory for publishing the user interface via Streamlit. This includes a main 'app.py' file that can deploy the app on the user interface via Streamlit Cloud along with other files such as required libraries and packages, pre-trained models and pre-built algorithms. Detailed instructions for execution are provided in the next section.
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* *How to run the program
+* *Step-by-step bullets
 ```
 code blocks for commands
 ```
