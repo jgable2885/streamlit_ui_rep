@@ -28,12 +28,13 @@ The main libraries and frameworks used in this project include:
 * How/where to download your program
 * Any modifications needed to be made to files/folders
 * 
-All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. To install a package within the notebook environment, use the code below as an example: 
+All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. These notebooks contain code for installing all required libraries and packages for execution. To install any additional package within the notebook environment, use the code below as an example: 
 ```
-!pip install deepchem
+!pip install some_new_package
 ```
 
-Our work on last core component has been integrated and stored in the same repository on Github, which is mandatory for publishing the user interface via Streamlit. This includes a main 'app.py' file that can deploy the app on the user interface via Streamlit Cloud along with other files such as required libraries and packages, pre-trained models and pre-built algorithms. Detailed instructions for execution are provided in the next section.
+Our work on last core component has been integrated and stored in the same repository on Github, which is mandatory for publishing the user interface via Streamlit. This includes a main 'app.py' file that can deploy the app on the user interface via Streamlit Cloud along with other files such as required libraries and packages, pre-trained models and pre-built algorithms. To upgrade current packages or install additional packages for the app, modify or add them in the 'requirement.txt' file. Additionally, to enable any development work for the web application via Streamlit, one must sign up for an account on [Streamlit Cloud](https://streamlit.io/cloud) and set up a GitHub repository.
+
 
 ### Executing program
 
@@ -45,9 +46,26 @@ code blocks for commands
 
 To reproduce our work in this project, please follow the steps below:
 1. Exploratory Data Analysis (EDA): 
-   For generating results and figures in EDA, execute the code in the 'Capstone_EDA.ipynb' file .
-2. For training the toxicity prediction models and performing preliminary evaluations, run the code in 'Capstone_prelim_model_testing.ipynb' the toxicity model including model training and preliminary evaluations: 
-4. Execute the code in 
+   For generating results and figures in EDA, execute all code cells in the 'Capstone_EDA.ipynb' file .
+2. Predictive Model Development:
+   * For training the toxicity prediction models and performing preliminary evaluations, run all code cells in 'Capstone_prelim_model_testing.ipynb'.
+   * For performing the advanced model evaluations, execute all code cells in 'Capstone_advanced_model_evaluation.ipynb'.
+3. Idea Generation:
+   * For developing similarity search algorithm, refer to this notebook?
+   * For developing idea tool via the matched molecular pairs approach, refer to this other notebook?  
+4. User interface:
+   * To test the experience on our fully deployed Detox web-application: visit [UpdateURL](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
+   * To enable the development of this web application:
+    I. Clone the GitHub repository with all required folders and files that can be found in the current [GitHub repository](https://github.com/luyingamypei/capstone_ui).  
+    * app.py: main code for building the Streamlit application and deploying the product  
+    * requirements.txt: contains all libraries and packages required for app.py to work
+    * packages.txt: contains an extension package (libxrender1) required
+    * 'AFPmodel' folder containing the pre-trained model stored as checkpoints 
+    * mmpdb_ideas.py: pre-built algorithm for idea generation that will be loaded by app.py
+    * AllHepG2.mmpdb: library of new molecules previously generated using the HepG2 dataset
+    * anything else?
+    II. Log in to Streamlit Cloud and follow the instructions to deploy the app.
+         For more information, refer to [How to Deploy an App on Streamlit Cloud](https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app)
 
 ## Help
 
