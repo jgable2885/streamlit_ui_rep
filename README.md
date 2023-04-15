@@ -10,29 +10,14 @@ This project contains 3 core components:
 2. Developing an idea generation tool for suggesting alternative molecules
 3. Deploying the product (1 & 2) through an interactive user interface 
 
-### Built With
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-The main libraries and frameworks we used for this project include: 
-* [![Product Name Screen Shot][product-screenshot]](https://example.com)
-* [![DeepChem]](https://deepchem.io/)
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Getting Started
 
 ### Dependencies
-
 * Describe any prerequisites, libraries, OS version, etc., needed before installing program.
 * ex. Windows 10
+The main libraries and frameworks that we used for this project include:
+* [DeepChem](https://deepchem.io/)
+
 
 ### Installing
 
