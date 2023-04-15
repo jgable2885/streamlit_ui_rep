@@ -46,45 +46,40 @@ code blocks for commands
 
 To reproduce our work in this project, please follow the steps below:
 1. Exploratory Data Analysis (EDA): 
-   For generating results and figures in EDA, execute all code cells in the 'Capstone_EDA.ipynb' file .
+   - For generating results and figures in EDA, execute all code cells in the 'Capstone_EDA.ipynb' file .
 2. Predictive Model Development:
-   * For training the toxicity prediction models and performing preliminary evaluations, run all code cells in 'Capstone_prelim_model_testing.ipynb'.
-   * For performing the advanced model evaluations, execute all code cells in 'Capstone_advanced_model_evaluation.ipynb'.
+   - For training the toxicity prediction models and performing preliminary evaluations, run all code cells in 'Capstone_prelim_model_testing.ipynb'.
+   - For performing the advanced model evaluations, execute all code cells in 'Capstone_advanced_model_evaluation.ipynb'.
 3. Idea Generation:
-   * For developing similarity search algorithm, refer to this notebook?
-   * For developing idea tool via the matched molecular pairs approach, refer to this other notebook?  
+   - For developing similarity search algorithm, refer to this notebook?
+   - For developing idea tool via the matched molecular pairs approach, refer to this other notebook?  
 4. User interface:
-   * To test the experience on our fully deployed Detox web-application: visit [UpdateURL](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
-   * To enable the development of this web application:
-    I. Clone the GitHub repository with all required folders and files that can be found in the current [GitHub repository](https://github.com/luyingamypei/capstone_ui).  
-    * app.py: main code for building the Streamlit application and deploying the product  
-    * requirements.txt: contains all libraries and packages required for app.py to work
-    * packages.txt: contains an extension package (libxrender1) required
-    * 'AFPmodel' folder containing the pre-trained model stored as checkpoints 
-    * mmpdb_ideas.py: pre-built algorithm for idea generation that will be loaded by app.py
-    * AllHepG2.mmpdb: library of new molecules previously generated using the HepG2 dataset
-    * anything else?
-    II. Log in to Streamlit Cloud and follow the instructions to deploy the app.
-         For more information, refer to [How to Deploy an App on Streamlit Cloud](https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app)
+   - To test the experience on our fully deployed Detox web-application: visit [UpdateURL](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
+   - To enable the development of this web application:
+    - Clone the GitHub repository with all required folders and files that can be found in the current [GitHub repository](https://github.com/luyingamypei/capstone_ui).  
+     - app.py: main code for building the Streamlit application and deploying the product  
+     - requirements.txt: contains all libraries and packages required for app.py to work
+     - packages.txt: contains an extension package (libxrender1) required
+     - 'AFPmodel' folder containing the pre-trained model stored as checkpoints 
+     - mmpdb_ideas.py: pre-built algorithm for idea generation that will be loaded by app.py
+     - AllHepG2.mmpdb: library of new molecules previously generated using the HepG2 dataset
+     - anything else?
+    - Log in to Streamlit Cloud and follow the instructions to deploy the app. For more information, refer to [How to Deploy an App on Streamlit Cloud](https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app)
 
 ## Help
+*Any advise for common problems or issues.*
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+Common issues that may occur during program execution:
+1. When cloning the GitHub repository, the 'HepG2.mmpdb'(395 MB) is a large file that may experience issues because GitHub has set an upper limit of 100 MB on the files one can upload. To resolve this issue, refer to [Git Large File Storage](https://git-lfs.com/), an open source Git extension for versioning large files.
+2. When loading the Detox web application via [UpdateURL](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), a specific [ValueError](https://discuss.streamlit.io/t/valueerror-setting-an-array-element-with-a-sequence/40272) may occur randomly but would usually fix itself within hours, which seems to be a recent internal problem that should be addressed by the development team at Streamlit.     
 
 ## Authors
+*Contributors names and contact info*
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-Jonathan Gable @[gablejo@umich]()
-Amy Pei @[Email] (luyingp@umich)
+Jonathan Gable @[UpdateEmail](gablejo@umich.edu)
+Amy Pei @[Email](luyingp@umich.edu)
 
 ## Version History
-
 * 0.2
     * Various bug fixes and optimizations
     * See [commit change]() or See [release history]()
