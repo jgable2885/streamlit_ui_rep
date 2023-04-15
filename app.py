@@ -167,7 +167,6 @@ if st.session_state['button'] == True:
 	
 		#st.table(preds_df.loc[:,['Assay Name','Toxicity Class', 'Probability of Toxicity']])
 		input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
-		st.write("{} predictions suggest toxicity".format(input_tox_count))
 		chart_data = pd.DataFrame(preds_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
 								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
 
@@ -176,6 +175,7 @@ if st.session_state['button'] == True:
 		y='Assay Name:N', 
 		tooltip=['Assay Name','Toxicity Class', 'Probability of Toxicity'])
 	st.altair_chart(chart, use_container_width=True) 
+	st.write("{} predictions suggest toxicity".format(input_tox_count))
 	st.image(Image.open("sim_grid.png"), caption='Top 3 most similar compounds from Tox21 database')
 	
 	ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
