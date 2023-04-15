@@ -11,9 +11,11 @@ This project contains 3 core components:
 3. Deploying the product (1 & 2) through an interactive user interface 
 
 ### Built With
-
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+The main libraries and frameworks we used for this project include: 
+* [![Product Name Screen Shot][product-screenshot]](https://example.com)
+* [![DeepChem]](https://deepchem.io/)
+
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![Vue][Vue.js]][Vue-url]
