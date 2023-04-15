@@ -13,7 +13,7 @@ This project contains 3 core components:
 ## Getting Started
 
 ### Dependencies
-* *Describe any prerequisites, libraries, OS version, etc., needed before installing program. ex. Windows 10*
+*Describe any prerequisites, libraries, OS version, etc., needed before installing program. ex. Windows 10*
 
 We used [Python]( https://www.python.org/) as the main programming language and [GoogleColab](https://colab.research.google.com/) as the platform for code collaboration.
 
@@ -25,9 +25,8 @@ The main libraries and frameworks used in this project include:
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
-* 
+*How/where to download your program & any modifications needed to be made to files/folders*
+
 All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. These notebooks contain code for installing all required libraries and packages for execution. To install any additional package within the notebook environment, use the code below as an example: 
 ```
 !pip install some_new_package
@@ -38,47 +37,40 @@ Our work on last core component has been integrated and stored in the same repos
 
 ### Executing program
 
-* *How to run the program
-* *Step-by-step bullets
-```
-code blocks for commands
-```
-
 To reproduce our work in this project, please follow the steps below:
-1. Exploratory Data Analysis (EDA): 
+1. **Exploratory Data Analysis (EDA)**: 
    - For generating results and figures in EDA, execute all code cells in the 'Capstone_EDA.ipynb' file .
-2. Predictive Model Development:
+2. **Predictive Model Development**:
    - For training the toxicity prediction models and performing preliminary evaluations, run all code cells in 'Capstone_prelim_model_testing.ipynb'.
    - For performing the advanced model evaluations, execute all code cells in 'Capstone_advanced_model_evaluation.ipynb'.
-3. Idea Generation:
+3. **Idea Generation**:
    - For developing similarity search algorithm, refer to this notebook?
    - For developing idea tool via the matched molecular pairs approach, refer to this other notebook?  
-4. User interface:
-   - To test the experience on our fully deployed Detox web-application: visit [UpdateURL](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
+4. **User interface**:
+   - To test the experience on our fully deployed web-application: visit [https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
    - To enable the development of this web application:
-    - Clone the GitHub repository with all required folders and files that can be found in the current [GitHub repository](https://github.com/luyingamypei/capstone_ui).  
-     - app.py: main code for building the Streamlit application and deploying the product  
-     - requirements.txt: contains all libraries and packages required for app.py to work
-     - packages.txt: contains an extension package (libxrender1) required
-     - 'AFPmodel' folder containing the pre-trained model stored as checkpoints 
-     - mmpdb_ideas.py: pre-built algorithm for idea generation that will be loaded by app.py
-     - AllHepG2.mmpdb: library of new molecules previously generated using the HepG2 dataset
-     - anything else?
-    - Log in to Streamlit Cloud and follow the instructions to deploy the app. For more information, refer to [How to Deploy an App on Streamlit Cloud](https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app)
+   
+      a. Clone the GitHub repository with all required folders and files that can be found in the current [GitHub repository](https://github.com/luyingamypei/capstone_ui).  
+      - app.py: main code for building the Streamlit application and deploying the product  
+      - requirements.txt: contains all libraries and packages required for app.py to work
+      - packages.txt: contains an extension package (libxrender1) required
+      - 'AFPmodel' folder containing the pre-trained model stored as checkpoints 
+      - mmpdb_ideas.py: pre-built algorithm for idea generation that will be loaded by app.py
+      - AllHepG2.mmpdb: library of new molecules previously generated using the HepG2 dataset
+
+      b. Log in to Streamlit Cloud and follow the instructions to deploy the app. For more information, refer to [How to Deploy an App on Streamlit Cloud](https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app)
 
 ## Help
-*Any advise for common problems or issues.*
 
 Common issues that may occur during program execution:
 1. When cloning the GitHub repository, the 'HepG2.mmpdb'(395 MB) is a large file that may experience issues because GitHub has set an upper limit of 100 MB on the files one can upload. To resolve this issue, refer to [Git Large File Storage](https://git-lfs.com/), an open source Git extension for versioning large files.
-2. When loading the Detox web application via [UpdateURL](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), a specific [ValueError](https://discuss.streamlit.io/t/valueerror-setting-an-array-element-with-a-sequence/40272) may occur randomly but would usually fix itself within hours, which seems to be a recent internal problem that should be addressed by the development team at Streamlit.     
+2. When loading the Detox web application, a specific [ValueError](https://discuss.streamlit.io/t/valueerror-setting-an-array-element-with-a-sequence/40272) may occur randomly but would usually fix itself within hours, which seems to be a recent internal problem that should be addressed by the development team at Streamlit.     
 
 ## Authors
-*Contributors names and contact info*
 
-Jonathan Gable @[UpdateEmail](gablejo@umich.edu)
+Jonathan Gable @Email: gablejo@umich.edu
 
-Amy Pei @[Email](luyingp@umich.edu)
+Amy Pei @Email: luyingp@umich.edu
 
 ## Version History
 * 0.2
@@ -93,7 +85,7 @@ This project is licensed under the [NAME HERE] License - see the LICENSE.md file
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
+*Inspiration, code snippets, etc.
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)
 * [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
 * [dbader](https://github.com/dbader/readme-template)
