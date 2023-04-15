@@ -86,13 +86,13 @@ st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 input_smile = st.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
 st.write('Press submit to have your molecule displayed below')
-button1 = st.button('Submit button 1')
+button1 = st.button('Predict Toxicities')
 
 if st.session_state.get('button') != True:
 	st.session_state['button'] = button1 # Saved the state
 
 if st.session_state['button'] == True:
-	st.write("button1 is True")
+	#st.write("button1 is True")
 	st.write("Your compound of interest is: ", input_smile)
 	
 	mol = Chem.MolFromSmiles(input_smile)
@@ -104,11 +104,11 @@ if st.session_state['button'] == True:
 
 
 	tox21_tasks3, tox21_datasets3, transformers3 = load_tox21_data()
-	st.write("Featurized!")
+	#st.write("Featurized!")
 	model_reload = restore_model()
 	#model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification',learning_rate=0.001, random_state=2, model_dir='AFPmodel')
 	#model_reload.restore()
-	st.write("Model reloaded!")
+	#st.write("Model reloaded!")
 
 	smiles = [input_smile]
 	featurizer3 = dc.feat.MolGraphConvFeaturizer(use_edges=True)
@@ -128,7 +128,7 @@ if st.session_state['button'] == True:
 					for c, s in zip(tox21_y_data['toxicity_counts'][0:3], tox21_y_data['sim'][0:3])]
 	sim_grid = Chem.Draw.MolsToGridImage(sim_mols, legends=sim_legends, subImgSize=(300,300))
 	sim_grid.save("sim_grid.png")
-	st.image(Image.open("sim_grid.png"), caption='Top 3 most similar compounds from Tox21 database')
+	
 	
 # 	grid_img = Chem.Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:num_ideas], 
 # 										 highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
@@ -150,10 +150,11 @@ if st.session_state['button'] == True:
 		exp_df['tox_class'] = exp_df['Prob Tox'].apply(get_tox_class)
 		exp_df.rename(columns={'tox_class':'Toxicity Class'}, inplace=True)
 		
-		st.table(exp_df.loc[1:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
+		#st.table(exp_df.loc[1:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
 		chart_data = pd.DataFrame(exp_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
 								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
 		chart_data = chart_data.loc[1:,:]
+		
 
 	else:
 	
@@ -164,7 +165,7 @@ if st.session_state['button'] == True:
 		preds_df['tox_class'] = preds_df['Prob Tox'].apply(get_tox_class)
 		preds_df.rename(columns= {'tox_class':'Toxicity Class'}, inplace = True)
 	
-		st.table(preds_df.loc[:,['Assay Name','Toxicity Class', 'Probability of Toxicity']])
+		#st.table(preds_df.loc[:,['Assay Name','Toxicity Class', 'Probability of Toxicity']])
 		input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
 		st.write("{} predictions suggest toxicity".format(input_tox_count))
 		chart_data = pd.DataFrame(preds_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
@@ -175,6 +176,7 @@ if st.session_state['button'] == True:
 		y='Assay Name:N', 
 		tooltip=['Assay Name','Toxicity Class', 'Probability of Toxicity'])
 	st.altair_chart(chart, use_container_width=True) 
+	st.image(Image.open("sim_grid.png"), caption='Top 3 most similar compounds from Tox21 database')
 	
 	ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
 	ideas_df.reset_index(inplace=True)
