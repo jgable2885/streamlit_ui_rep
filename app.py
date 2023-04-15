@@ -188,7 +188,7 @@ if st.session_state['button'] == True:
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	genre = st.radio("How many new ideas would you like to generate?",('None', '1', '3', '5'))
 	
-	if st.button('Submit button 2'):
+	if st.button('Generate ideas'):
 		st.write("Do your logic here")
 		if genre == 'None':
 			st.write("You have opted out for alternative candidate generation.")
