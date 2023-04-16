@@ -32,7 +32,7 @@ All code work completed for the core components 1 & 2 of this project has been c
 from google.colab import drive
 drive.mount('/content/gdrive')
 ```
-These notebooks contain code for installing all required libraries and packages for execution. To install any package within the notebook environment, use the code below as an example for installing the DeepChem library: 
+The code for installing all the libraries and packages required for running the notebooks can be found within the notebooks. To install any package within the notebook environment, use the code below as an example for installing the DeepChem library: 
 ```
 !pip install deepchem
 ```
