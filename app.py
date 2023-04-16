@@ -81,7 +81,9 @@ def display_idea_grid(ideas_df, num_ideas):
 	grid_img.save("tmp_grid.png")
 	st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
 
-st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
+st.sidebar.title('Detox App')
+st.sidebar.write('by Amy and Jonathan')
+#st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
 input_smile = st.sidebar.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
