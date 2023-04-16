@@ -27,9 +27,14 @@ The main libraries and frameworks used in this project include:
 
 *How/where to download your program & any modifications needed to be made to files/folders*
 
-All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. These notebooks contain code for installing all required libraries and packages for execution. To install any additional package within the notebook environment, use the code below as an example: 
+All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
 ```
-!pip install some_new_package
+from google.colab import drive
+drive.mount('/content/gdrive')
+```
+These notebooks contain code for installing all required libraries and packages for execution. To install any package within the notebook environment, use the code below as an example for installing the DeepChem library: 
+```
+!pip install deepchem
 ```
 
 Our work on last core component has been integrated and stored in the same repository on Github, which is mandatory for publishing the user interface via Streamlit. This includes a main 'app.py' file that can deploy the app on the user interface via Streamlit Cloud along with other files such as required libraries and packages, pre-trained models and pre-built algorithms. To upgrade current packages or install additional packages for the app, modify or add them in the 'requirement.txt' file. Additionally, to enable any development work for the web application via Streamlit, one must sign up for an account on [Streamlit Cloud](https://streamlit.io/cloud) and set up a GitHub repository.
