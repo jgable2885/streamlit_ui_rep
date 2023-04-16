@@ -81,6 +81,7 @@ def display_idea_grid(ideas_df, num_ideas):
 	grid_img.save("tmp_grid.png")
 	st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
 
+st.sidebar.image(Image.open('./data/logo.png'))
 st.sidebar.title('Detox App')
 st.sidebar.caption('by Amy and Jonathan')
 #st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
