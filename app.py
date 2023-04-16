@@ -83,10 +83,10 @@ def display_idea_grid(ideas_df, num_ideas):
 
 st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
 
-input_smile = st.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
+input_smile = st.sidebar.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
 st.write('Press submit to have your molecule displayed below')
-button1 = st.button('Predict Toxicities')
+button1 = st.sidebar.button('Predict Toxicities')
 
 if st.session_state.get('button') != True:
 	st.session_state['button'] = button1 # Saved the state
@@ -187,10 +187,10 @@ if st.session_state['button'] == True:
 	toxicity_counts = [np.sum(pred>0.6) for pred in idea_preds[:,:,1]]
 	ideas_df['toxicity_counts'] = toxicity_counts
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
-	genre = st.radio("How many new ideas would you like to generate?",('None', '1', '3', '5'))
+	genre = st.sidebar.radio("How many new ideas would you like to generate?",('None', '1', '3', '5'))
 	
-	if st.button('Generate ideas'):
-		st.write("Do your logic here")
+	if st.sidebar.button('Generate ideas'):
+		#st.write("Do your logic here")
 		if genre == 'None':
 			st.write("You have opted out for alternative candidate generation.")
 		elif genre == '5':
