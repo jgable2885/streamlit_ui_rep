@@ -175,7 +175,8 @@ if st.session_state['button'] == True:
 		y='Assay Name:N', 
 		tooltip=['Assay Name','Toxicity Class', 'Probability of Toxicity'])
 	st.altair_chart(chart, use_container_width=True) 
-	st.write("{} predictions suggest toxicity".format(input_tox_count))
+	if match_found == False:
+		st.write("{} predictions suggest toxicity".format(input_tox_count))
 	st.image(Image.open("sim_grid.png"), caption='Top 3 most similar compounds from Tox21 database')
 	
 	ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
