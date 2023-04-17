@@ -38,7 +38,7 @@ The code for installing all the libraries and packages required for running the 
 !pip install deepchem
 ```
 
-Our work on last core component has been integrated and stored in the same repository on Github, which is mandatory for publishing the user interface via Streamlit. This includes a main 'app.py' file that can deploy the app on the user interface via Streamlit Cloud along with other files such as required libraries and packages, pre-trained models and pre-built algorithms. To upgrade current packages or install additional packages for the app, modify or add them in the 'requirement.txt' file. Additionally, to enable any development work for the web application via Streamlit, one must sign up for an account on [Streamlit Cloud](https://streamlit.io/cloud) and set up a GitHub repository.
+Our work on last core component has been integrated and stored in the same repository on Github, which is mandatory for publishing the user interface via Streamlit. This includes a main 'app.py' file that can deploy the app on the user interface via Streamlit Cloud along with other files such as required libraries and packages, pre-trained models and pre-built algorithms. To upgrade current packages or install additional packages for the app, modify or add them in the 'requirement.txt' file. Additionally, to enable any development work for the web application via Streamlit, one must sign up for an account on [Streamlit Cloud](https://streamlit.io/cloud) and set up a [GitHub repository](https://docs.github.com/en/get-started/quickstart/create-a-repo).
 
 
 ### Executing program
@@ -50,6 +50,7 @@ To reproduce our work in this project, please follow the steps below:
 2. **Predictive Model Development**:
    - For training the toxicity prediction models and performing preliminary evaluations, run all code cells in 'ToxModelTrainingAndPreliminaryEvaluations.ipynb' in the 'notebooks' folder.
    - For performing the advanced model evaluations, execute all code cells in 'ToxModelAdvancedEvaluations.ipynb' in the 'notebooks' folder.
+   - All of the trained deep learning models (except for the Weave model due to size restrictions) have been stored in the 'models' folder.
 3. **Idea Generation**:
    - For developing similarity search algorithm, refer to *this notebook?* in the 'notebooks' folder.
    - For developing idea tool via the matched molecular pairs approach, refer to 'IdeaGenerationEvaluation.ipynb' in the 'notebooks' folder.  
@@ -61,7 +62,7 @@ To reproduce our work in this project, please follow the steps below:
       - app.py: main code for building the Streamlit application and deploying the product  
       - requirements.txt: contains all libraries and packages required for app.py to work
       - packages.txt: contains an extension package (libxrender1) required
-      - 'AFPmodel' folder containing the pre-trained model stored as checkpoints 
+      - 'AFPmodel' folder containing the pre-trained model stored as checkpoints that will be loaded by app.py
       - mmpdb_ideas.py: pre-built algorithm for idea generation that will be loaded by app.py
       - AllHepG2.mmpdb: library of new molecules previously generated using the HepG2 dataset
 
