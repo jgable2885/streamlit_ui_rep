@@ -1,11 +1,12 @@
 # Team Detox Capstone Project 
 
-This project aims to build a web application for drug discovery scientists to input a molecule of interest, predict its toxicity and suggest new ideas for back-up candidates. 
+A web application for predictive models and idea generation to improve preclinical toxicology. 
 
 ## Description
 *An in-depth paragraph about your project and overview of use.*
 
-This project contains 3 core components:
+This project aims to build a web application that would allow drug discovery scientists to input a molecule of interest, predict its toxicity and suggest new ideas for back-up candidates. 
+There are 3 core components:
 1. Building a classification model for predicting the toxicity of a chemical molecule
 2. Developing an idea generation tool for suggesting alternative molecules
 3. Deploying the product (1 & 2) through an interactive user interface 
@@ -73,16 +74,17 @@ Common issues that may occur during program execution:
 
 ## Authors
 
-Jonathan Gable @Email: gablejo@umich.edu
+Jonathan Gable: gablejo@umich.edu
 
-Amy Pei @Email: luyingp@umich.edu
+Amy Pei: luyingp@umich.edu
+
+Project Link: https://github.com/luyingamypei/capstone_ui
 
 ## Version History
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
+    
 * 0.1
     * Initial Release
+    * See [commit change](https://github.com/luyingamypei/capstone_ui/commits/main) or See [release history](https://github.com/luyingamypei/capstone_ui/releases)
 
 ## License
 
@@ -90,9 +92,10 @@ This project is licensed under the [NAME HERE] License - see the LICENSE.md file
 
 ## Acknowledgments
 
-*Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+*Inspiration, code snippets, etc.*
+
+* We would like to acknowledge the teams who developed the main libraries, tools and platforms that were crucial in our project, including but not limited to DeepChem, Streamlit, GitHub, Python, and GoogleColab.
+* We would also like to thank everyone who contributed their inputs to our qualitative data inquiries which led to valuable insights for our data analysis.
+* Finally, we would like to acklowdge and thank the entire MADS Capstone instructional team especially Dr. O'Brien, Michelle and and all others that provided us with guidance and help throughout this project.
+
+
