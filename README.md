@@ -29,7 +29,7 @@ The main libraries and frameworks used in this project include:
 
 *How/where to download your program & any modifications needed to be made to files/folders*
 
-All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [current GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
+All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the ['notebooks' folder] (https://github.com/luyingamypei/capstone_ui/tree/main/notebooks) in this current GitHub repository. To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
 ```
 from google.colab import drive
 drive.mount('/content/gdrive')
@@ -99,6 +99,6 @@ This project is licensed under the [NAME HERE] License - see the LICENSE.md file
 
 * We would like to acknowledge the teams who developed the main libraries, tools and platforms that were crucial in our project, including but not limited to DeepChem, Streamlit, GitHub, Python, and GoogleColab.
 * We would also like to thank everyone who contributed their inputs to our qualitative data inquiries which led to valuable insights for our data analysis.
-* Finally, we would like to acklowdge and thank the entire MADS Capstone instructional team especially Dr. O'Brien, Michelle and all others that provided us with guidance and help throughout this project.
+* Finally, we would like to acklowdge and thank the entire MADS Capstone instructional team especially Dr. O'Brien, Michelle LeBlanc and all others who provided us with guidance and help throughout this project.
 
 
