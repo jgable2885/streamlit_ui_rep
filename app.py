@@ -88,7 +88,7 @@ st.sidebar.caption('by Amy and Jonathan')
 
 input_smile = st.sidebar.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
-st.write('Press submit to have your molecule displayed below')
+#st.write('Press submit to have your molecule displayed below')
 button1 = st.sidebar.button('Predict Toxicities')
 
 if st.session_state.get('button') != True:
