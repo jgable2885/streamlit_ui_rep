@@ -1,0 +1,3 @@
+The Tox21 dataset is available via the DeepChem API (deepchem.molnet.load_tox21() function). 
+The HepG2 dataset is available from ChEMBL (https://www.ebi.ac.uk/chembl/). It can be retrieved via the webservices Python API using target_chembl_id='CHEMBL395' and assay_chembl_id ="CHEMBL1794553".
+Our project logo was generated with Canva (www.canva.com).
