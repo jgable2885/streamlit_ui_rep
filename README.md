@@ -68,7 +68,7 @@ To reproduce our work in this project, please follow the steps below:
 ## Help
 
 Common issues that may occur during program execution:
-1. When cloning the GitHub repository, the 'HepG2.mmpdb'(395 MB) is a large file that may experience issues because GitHub has set an upper limit of 100 MB on the files one can upload. To resolve this issue, refer to [Git Large File Storage](https://git-lfs.com/), an open source Git extension for versioning large files.
+1. When cloning the GitHub repository, the 'HepG2.mmpdb'(395 MB) is a large file that may experience issues because GitHub has set an upper limit of 25 MB per file on the files uploaded to a repository via a browser. To resolve this issue, refer to [Git Large File Storage](https://git-lfs.com/), an open source Git extension for versioning large files.
 2. When loading the Detox web application, a specific [ValueError](https://discuss.streamlit.io/t/valueerror-setting-an-array-element-with-a-sequence/40272) may occur randomly but would usually fix itself within hours, which seems to be a recent internal problem that should be addressed by the development team at Streamlit.     
 
 ## Authors
