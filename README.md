@@ -20,15 +20,16 @@ We used [Python]( https://www.python.org/) as the main programming language and 
 
 The main libraries and frameworks used in this project include:
 * [DeepChem](https://deepchem.io/)
-* [DGL](https://www.dgl.ai/)
+* [DGL](https://www.dgl.ai/) 
 * [Streamlit](https://streamlit.io/)
 * [GitHub](https://github.com/)
+* **Also Sci-kit Learn, Matplotlib, Seaborn, etc. - BUT DO WE NEED TO INCLUDE ANY OR ALL OF THESE HERE?** 
 
 ### Installing
 
 *How/where to download your program & any modifications needed to be made to files/folders*
 
-All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
+All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the 'notebooks' folder in this [current GitHub repository](https://github.com/luyingamypei/capstone_ui). To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
 ```
 from google.colab import drive
 drive.mount('/content/gdrive')
@@ -56,7 +57,7 @@ To reproduce our work in this project, please follow the steps below:
    - For developing idea tool via the matched molecular pairs approach, refer to 'IdeaGenerationEvaluation.ipynb' in the 'notebooks' folder.  
 4. **User interface**:
    - To test the experience on our fully deployed web-application: visit [https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
-   - To enable the development of this web application:
+   - To enable the development of this online application:
    
       a. Clone the GitHub repository with all required folders and files that can be found in the current [GitHub repository](https://github.com/luyingamypei/capstone_ui).  
       - app.py: main code for building the Streamlit application and deploying the product  
