@@ -45,13 +45,14 @@ Our work on last core component has been integrated and stored in the same repos
 
 To reproduce our work in this project, please follow the steps below:
 1. **Exploratory Data Analysis (EDA)**: 
-   - For generating results and figures in EDA, execute all code cells in the 'Capstone_EDA.ipynb' file .
+   - For generating results and figures in EDA, execute all code cells in the 'EDA_TrainingSetOnly.ipynb' file in the 'notebooks' folder.
+   - For generating a CSV file containing Tox21 experimental data with canonical SMILES, refer to 'GenerateCSVwithTox21CanonicalSmilesAndExperimentalResults.ipynb' in the 'notebooks' folder.  
 2. **Predictive Model Development**:
-   - For training the toxicity prediction models and performing preliminary evaluations, run all code cells in 'Capstone_prelim_model_testing.ipynb'.
-   - For performing the advanced model evaluations, execute all code cells in 'Capstone_advanced_model_evaluation.ipynb'.
+   - For training the toxicity prediction models and performing preliminary evaluations, run all code cells in 'ToxModelTrainingAndPreliminaryEvaluations.ipynb' in the 'notebooks' folder.
+   - For performing the advanced model evaluations, execute all code cells in 'ToxModelAdvancedEvaluations.ipynb' in the 'notebooks' folder.
 3. **Idea Generation**:
-   - For developing similarity search algorithm, refer to this notebook?
-   - For developing idea tool via the matched molecular pairs approach, refer to this other notebook?  
+   - For developing similarity search algorithm, refer to *this notebook?* in the 'notebooks' folder.
+   - For developing idea tool via the matched molecular pairs approach, refer to 'IdeaGenerationEvaluation.ipynb' in the 'notebooks' folder.  
 4. **User interface**:
    - To test the experience on our fully deployed web-application: visit [https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
    - To enable the development of this web application:
@@ -96,6 +97,6 @@ This project is licensed under the [NAME HERE] License - see the LICENSE.md file
 
 * We would like to acknowledge the teams who developed the main libraries, tools and platforms that were crucial in our project, including but not limited to DeepChem, Streamlit, GitHub, Python, and GoogleColab.
 * We would also like to thank everyone who contributed their inputs to our qualitative data inquiries which led to valuable insights for our data analysis.
-* Finally, we would like to acklowdge and thank the entire MADS Capstone instructional team especially Dr. O'Brien, Michelle and and all others that provided us with guidance and help throughout this project.
+* Finally, we would like to acklowdge and thank the entire MADS Capstone instructional team especially Dr. O'Brien, Michelle and all others that provided us with guidance and help throughout this project.
 
 
