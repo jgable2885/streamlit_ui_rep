@@ -96,7 +96,8 @@ if st.session_state.get('button') != True:
 if st.session_state['button'] == True:
 	st.write("Your compound of interest is: ", input_smile)
 	try:
-		mol = Chem.MolFromSmiles(input_smile)
+		canonInput = Chem.CanonSmiles(input_smile)
+		mol = Chem.MolFromSmiles(canonInput)
 	except:
 		st.error('Please input a valid SMILES string')
 
