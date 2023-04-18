@@ -82,7 +82,7 @@ def display_idea_grid(ideas_df, num_ideas):
 	st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
 
 st.sidebar.image(Image.open('./data/logo.png'))
-st.sidebar.caption('by Amy and Jonathan)
+st.sidebar.caption('by Amy and Jonathan')
 
 
 input_smile = st.sidebar.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
