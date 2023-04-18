@@ -28,7 +28,7 @@ The main libraries and frameworks used in this project include:
 ### Installing
 
 
-All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the ['notebooks' folder](https://github.com/luyingamypei/capstone_ui/tree/main/notebooks) in this current GitHub repository. To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and either recreate the directory structure of this repo or modify the paths in the code to work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
+All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the ['notebooks' folder](https://github.com/luyingamypei/capstone_ui/tree/main/notebooks) in this current GitHub repository. To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the paths in the code to work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
 ```
 from google.colab import drive
 drive.mount('/content/gdrive')
