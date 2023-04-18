@@ -172,23 +172,7 @@ if st.session_state['button'] == True:
 	if match_found == False:
 		st.write("{} predictions suggest toxicity".format(input_tox_count))
 	st.image(Image.open("sim_grid.png"), caption='Top 3 most similar compounds from Tox21 database')
-	
-	genre = st.sidebar.radio("How many new ideas would you like to generate?",('None', '1', '3', '5'))
-	
-	if st.sidebar.button('Generate ideas'):
-		if genre == 'None':
-			st.write("You have opted out for alternative candidate generation.")
-		elif genre == '5':
-			st.write("Let's see ", genre, " alternative ideas!")
-			display_idea_grid(ideas_df, int(genre))	
 
-		elif genre == '3':
-			st.write("Let's see ", genre, " alternative ideas!")
-			display_idea_grid(ideas_df, int(genre))	
-
-		elif genre == '1':
-			st.write("Let's see ", genre, " alternative ideas!")
-			display_idea_grid(ideas_df, int(genre))		
 
 
 	ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
@@ -203,3 +187,18 @@ if st.session_state['button'] == True:
 	ideas_df['toxicity_counts'] = toxicity_counts
 	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 
+	genre = st.sidebar.radio("How many new ideas would you like to generate?",('None', '1', '3', '5'))
+	if st.sidebar.button('Generate ideas'):
+		if genre == 'None':
+			st.write("You have opted out for alternative candidate generation.")
+		elif genre == '5':
+			st.write("Let's see ", genre, " alternative ideas!")
+			display_idea_grid(ideas_df, int(genre))	
+
+		elif genre == '3':
+			st.write("Let's see ", genre, " alternative ideas!")
+			display_idea_grid(ideas_df, int(genre))	
+
+		elif genre == '1':
+			st.write("Let's see ", genre, " alternative ideas!")
+			display_idea_grid(ideas_df, int(genre))		
