@@ -18,7 +18,7 @@ def get_tox_class(prob_true):
 		return "Inconclusive"
 
 def get_highlights(pattern, molecule):
-    ##adapted from https://www.rdkit.org/docs/GettingStartedInPython.html
+    ## adapted from https://www.rdkit.org/docs/GettingStartedInPython.html
     if isinstance(molecule, str):
         mol = Chem.MolFromSmiles(molecule)
     elif isinstance(molecule, Chem.rdchem.Mol):
@@ -82,20 +82,18 @@ def display_idea_grid(ideas_df, num_ideas):
 	st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
 
 st.sidebar.image(Image.open('./data/logo.png'))
-st.sidebar.title('Detox App')
-st.sidebar.caption('by Amy and Jonathan')
-#st.write('Hello, welcome to the Detox App by Jonathan and Amy!')
+st.sidebar.markdown('<span style="color:#d9d9d8;font-size:10px">by Amy and Jonathan</span>')
+
 
 input_smile = st.sidebar.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
 	 
-#st.write('Press submit to have your molecule displayed below')
+
 button1 = st.sidebar.button('Predict Toxicities')
 
 if st.session_state.get('button') != True:
 	st.session_state['button'] = button1 # Saved the state
 
 if st.session_state['button'] == True:
-	#st.write("button1 is True")
 	st.write("Your compound of interest is: ", input_smile)
 	
 	mol = Chem.MolFromSmiles(input_smile)
@@ -107,11 +105,8 @@ if st.session_state['button'] == True:
 
 
 	tox21_tasks3, tox21_datasets3, transformers3 = load_tox21_data()
-	#st.write("Featurized!")
 	model_reload = restore_model()
-	#model_reload=dc.models.AttentiveFPModel(n_tasks=12, batch_size=50, mode='classification',learning_rate=0.001, random_state=2, model_dir='AFPmodel')
-	#model_reload.restore()
-	#st.write("Model reloaded!")
+
 
 	smiles = [input_smile]
 	featurizer3 = dc.feat.MolGraphConvFeaturizer(use_edges=True)
@@ -132,17 +127,6 @@ if st.session_state['button'] == True:
 	sim_grid = Chem.Draw.MolsToGridImage(sim_mols, legends=sim_legends, subImgSize=(300,300))
 	sim_grid.save("sim_grid.png")
 	
-	
-# 	grid_img = Chem.Draw.MolsToGridImage(idea_mols, legends=idea_legends[0:num_ideas], 
-# 										 highlightAtomLists=idea_hit_atoms, highlightBondLists=idea_hit_bonds)
-# 	grid_img.save("tmp_grid.png")
-# 	st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
-	
-	
-	#ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
-	
-	#toxicity_counts = [np.sum(pred>0.6) for pred in idea_preds[:,:,1]]
-	
 	match_found, data = find_tox21_match(smiles[0], tox21_y_data)
 	if match_found == True:
 		st.write('Exact match found, returning experimental results not predictions')
@@ -153,7 +137,6 @@ if st.session_state['button'] == True:
 		exp_df['tox_class'] = exp_df['Prob Tox'].apply(get_tox_class)
 		exp_df.rename(columns={'tox_class':'Toxicity Class'}, inplace=True)
 		
-		#st.table(exp_df.loc[1:,['Assay Name', 'Toxicity Class', 'Probability of Toxicity']])
 		chart_data = pd.DataFrame(exp_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
 								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
 		chart_data = chart_data.loc[1:,:]
@@ -168,7 +151,6 @@ if st.session_state['button'] == True:
 		preds_df['tox_class'] = preds_df['Prob Tox'].apply(get_tox_class)
 		preds_df.rename(columns= {'tox_class':'Toxicity Class'}, inplace = True)
 	
-		#st.table(preds_df.loc[:,['Assay Name','Toxicity Class', 'Probability of Toxicity']])
 		input_tox_count = np.sum(preds_df['Prob Tox'] > 0.6)
 		chart_data = pd.DataFrame(preds_df[['Assay Name','Toxicity Class','Prob Tox','Probability of Toxicity']], 
 								  columns=['Assay Name','Toxicity Class', 'Prob Tox','Probability of Toxicity'])
@@ -193,7 +175,6 @@ if st.session_state['button'] == True:
 	genre = st.sidebar.radio("How many new ideas would you like to generate?",('None', '1', '3', '5'))
 	
 	if st.sidebar.button('Generate ideas'):
-		#st.write("Do your logic here")
 		if genre == 'None':
 			st.write("You have opted out for alternative candidate generation.")
 		elif genre == '5':
