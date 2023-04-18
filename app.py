@@ -147,8 +147,11 @@ if st.session_state['button'] == True:
 		
 
 	else:
-	
-		preds = model_reload.predict_on_batch(new_smile3, transformers=transformers3)
+		try:
+			preds = model_reload.predict_on_batch(new_smile3, transformers=transformers3)
+		except:
+			st.error('Toxicity predictions failed for this input. Check your structure and try again.')
+			st.stop()
 		preds_df = pd.DataFrame(preds[0], columns=['Prob False','Prob Tox'])
 		preds_df['Assay Name'] = tox21_tasks3
 		preds_df['Probability of Toxicity'] = preds_df['Prob Tox'].astype(float).map(lambda n: '{:.2%}'.format(n))
