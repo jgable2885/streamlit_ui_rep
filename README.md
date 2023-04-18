@@ -3,7 +3,6 @@
 A web application for predictive models and idea generation to improve preclinical toxicology. 
 
 ## Description
-*An in-depth paragraph about your project and overview of use.*
 
 This project aims to build a web application that would allow drug discovery scientists to input a molecule of interest, predict its toxicity and suggest new ideas for back-up candidates. 
 There are 3 core components:
@@ -28,7 +27,6 @@ The main libraries and frameworks used in this project include:
 
 ### Installing
 
-*How/where to download your program & any modifications needed to be made to files/folders*
 
 All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the ['notebooks' folder](https://github.com/luyingamypei/capstone_ui/tree/main/notebooks) in this current GitHub repository. To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and either recreate the directory structure of this repo or modify the paths in the code to work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
 ```
@@ -60,7 +58,7 @@ To reproduce our work in this project, please follow the steps below:
    - Code for similarity search to retrieve the most similar Tox21 molecules to the user input can be found in 'app.py'
    - For evaluation of the idea generation approach and associated figures execute all cells of 'IdeaGenerationEvaluation.ipynb' in the 'notebooks' folder.  
 4. **User interface**:
-   - To test the experience on our fully deployed web-application: visit [https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
+   - To test the experience of our fully deployed web-application: visit [https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/)
    - To enable the development of this online application:
    
       a. Clone the GitHub repository with all required folders and files that can be found in the current [GitHub repository](https://github.com/luyingamypei/capstone_ui).  
@@ -77,7 +75,8 @@ To reproduce our work in this project, please follow the steps below:
 
 Common issues that may occur during program execution:
 1. When cloning the GitHub repository, the 'HepG2.mmpdb'(395 MB) is a large file that may experience issues because GitHub has set an upper limit of 25 MB per file on the files uploaded to a repository via a browser. To resolve this issue, refer to [Git Large File Storage](https://git-lfs.com/), an open source Git extension for versioning large files.
-2. When loading the Detox web application, a specific [ValueError](https://discuss.streamlit.io/t/valueerror-setting-an-array-element-with-a-sequence/40272) may occur randomly but would usually fix itself within hours, which seems to be a recent internal problem that should be addressed by the development team at Streamlit.     
+2. When loading the Detox web application, a specific [ValueError](https://discuss.streamlit.io/t/valueerror-setting-an-array-element-with-a-sequence/40272) may occur randomly but would usually fix itself within hours, which seems to be a recent internal problem that should be addressed by the development team at Streamlit.
+3. Some input molecules such as rings with no substituents (e.g. benzene), single atoms/ions, molecules that don't contain any carbon (e.g. H2O), and multiple molecules in the same SMILES string will cause featurization and/or idea generation to fail.    
 
 ## Authors
 
@@ -99,9 +98,8 @@ This project is licensed under the GNU General Public License v3.0 - see the LIC
 
 ## Acknowledgments
 
-*Inspiration, code snippets, etc.*
 
-* We would like to acknowledge the teams who developed the main libraries, tools and platforms that were crucial in our project, including but not limited to DeepChem, Streamlit, GitHub, Python, and GoogleColab.
+* We would like to acknowledge the teams who developed the main libraries, tools and platforms that were crucial in our project, including but not limited to DeepChem, RDKit, mmpdb, Streamlit, GitHub, Python, and GoogleColab.
 * We would also like to thank everyone who contributed their inputs to our qualitative data inquiries which led to valuable insights for our data analysis.
 * Finally, we would like to acklowdge and thank the entire MADS Capstone instructional team especially Dr. O'Brien, Michelle LeBlanc and all others who provided us with guidance and help throughout this project.
 
