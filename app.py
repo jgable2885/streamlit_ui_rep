@@ -95,8 +95,10 @@ if st.session_state.get('button') != True:
 
 if st.session_state['button'] == True:
 	st.write("Your compound of interest is: ", input_smile)
-	
-	mol = Chem.MolFromSmiles(input_smile)
+	try:
+		mol = Chem.MolFromSmiles(input_smile)
+	except:
+		st.error('Please input a valid SMILES string')
 
 	filename = "%s%d.png" % ("test", 0)
 
