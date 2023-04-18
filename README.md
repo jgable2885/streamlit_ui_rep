@@ -14,22 +14,23 @@ There are 3 core components:
 ## Getting Started
 
 ### Dependencies
-*Describe any prerequisites, libraries, OS version, etc., needed before installing program. ex. Windows 10*
 
 We used [Python]( https://www.python.org/) as the main programming language and [GoogleColab](https://colab.research.google.com/) as the platform for code collaboration.
 
 The main libraries and frameworks used in this project include:
 * [DeepChem](https://deepchem.io/)
+* [RDKit](https://www.rdkit.org/)
+* [mmpdb](https://github.com/rdkit/mmpdb)
 * [DGL](https://www.dgl.ai/) 
+* [scikit-learn](https://scikit-learn.org/stable/)
 * [Streamlit](https://streamlit.io/)
 * [GitHub](https://github.com/)
-* **Also Sci-kit Learn, Matplotlib, Seaborn, etc. - BUT DO WE NEED TO INCLUDE ANY OR ALL OF THESE HERE?** 
 
 ### Installing
 
 *How/where to download your program & any modifications needed to be made to files/folders*
 
-All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the ['notebooks' folder](https://github.com/luyingamypei/capstone_ui/tree/main/notebooks) in this current GitHub repository. To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and modify the relative directories to absolute paths work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
+All code work completed for the core components 1 & 2 of this project has been cleaned and saved as '.ipynb' files in the ['notebooks' folder](https://github.com/luyingamypei/capstone_ui/tree/main/notebooks) in this current GitHub repository. To reproduce these parts of the project, one must install GoogleColab or another appropriate notebook environment and either recreate the directory structure of this repo or modify the paths in the code to work in their own environment before executing the code. If GoogleColab is used, Google Drive can be mounted to the runtime using the following code:
 ```
 from google.colab import drive
 drive.mount('/content/gdrive')
@@ -53,8 +54,11 @@ To reproduce our work in this project, please follow the steps below:
    - For performing the advanced model evaluations, execute all code cells in 'ToxModelAdvancedEvaluations.ipynb' in the 'notebooks' folder.
    - All of the trained deep learning models (except for the Weave model due to size restrictions) have been stored in the 'models' folder.
 3. **Idea Generation**:
-   - For developing similarity search algorithm, refer to *this notebook?* in the 'notebooks' folder.
-   - For developing idea tool via the matched molecular pairs approach, refer to 'IdeaGenerationEvaluation.ipynb' in the 'notebooks' folder.  
+   - To retrieve the ChEMBL HepG2 data used for MMP database creation and some figure generation run all cells of the 'RetrieveChEMBLData.ipynb' file. Retrieving the ~58K rows from ChEMBL takes several hours. A CSV file, hepg2_output_df.csv, is available in the data directory of this repo.
+   - For generation of MMP databases via the mmpdb package run all cells of the CreateMMPdatabases.ipynb file. This takes ~1 hour to execute and creates large files: ~400MB for the HepG2 MMP database and ~2.6GB for the Tox21 MMP database. The HepG2 database is contained in 'AllHepG2.mmpdb' in this repo.
+   - A helper function that takes a SMILES string as input and returns a Pandas dataframe of ideas via the mmpdb package can be found in the mmpdb_ideas.py file in the lib directory.
+   - Code for similarity search to retrieve the most similar Tox21 molecules to the user input can be found in 'app.py'
+   - For evaluation of the idea generation approach and associated figures execute all cells of 'IdeaGenerationEvaluation.ipynb' in the 'notebooks' folder.  
 4. **User interface**:
    - To test the experience on our fully deployed web-application: visit [https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/](https://luyingamypei-capstone-ui-app-amgnts.streamlit.app/), 
    - To enable the development of this online application:
@@ -91,7 +95,7 @@ Project Link: https://github.com/luyingamypei/capstone_ui
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details
+This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details
 
 ## Acknowledgments
 
