@@ -101,7 +101,8 @@ if st.session_state['button'] == True:
 		mol = Chem.MolFromSmiles(input_smile)
 		filename = "input" + str(input_count) + ".png"
 		Chem.Draw.MolToFile(mol, filename)
-		st.image(Image.open(filename),caption='Compound structure')
+		input_img = Image.open(filename)
+		st.image(input_img,caption='Compound structure')
 	except:
 		st.error('Please input a valid SMILES string')
 		st.stop()
