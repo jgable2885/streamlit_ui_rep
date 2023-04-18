@@ -76,7 +76,8 @@ To reproduce our work in this project, please follow the steps below:
 Common issues that may occur during program execution:
 1. When cloning the GitHub repository, the 'HepG2.mmpdb'(395 MB) is a large file that may experience issues because GitHub has set an upper limit of 25 MB per file on the files uploaded to a repository via a browser. To resolve this issue, refer to [Git Large File Storage](https://git-lfs.com/), an open source Git extension for versioning large files.
 2. When loading the Detox web application, a specific [ValueError](https://discuss.streamlit.io/t/valueerror-setting-an-array-element-with-a-sequence/40272) may occur randomly but would usually fix itself within hours, which seems to be a recent internal problem that should be addressed by the development team at Streamlit.
-3. Some input molecules such as rings with no substituents (e.g. benzene), single atoms/ions, molecules that don't contain any carbon (e.g. H2O), and multiple molecules in the same SMILES string will cause featurization and/or idea generation to fail.    
+3. Some input molecules such as rings with no substituents (e.g. benzene), single atoms/ions, molecules that don't contain any carbon (e.g. H2O), and multiple molecules in the same SMILES string will cause featurization and/or idea generation to fail.  
+4. With repeated submissions in the same session the first image of the input structure sometimes doesn't display. This is a [known issue with Streamlit](https://github.com/streamlit/streamlit/issues/1294).  
 
 ## Authors
 
