@@ -96,21 +96,25 @@ if st.session_state.get('button') != True:
 if st.session_state['button'] == True:
 	st.write("Your compound of interest is: ", input_smile)
 	try:
-		canonInput = Chem.CanonSmiles(input_smile)
-		mol = Chem.MolFromSmiles(canonInput)
+		input_smile = Chem.CanonSmiles(input_smile)
+		mol = Chem.MolFromSmiles(input_smile)
 		filename = "%s%d.png" % ("test", 0)
 		Chem.Draw.MolToFile(mol, filename)
 		st.image(Image.open(filename),caption='Compound structure')
 	except:
 		st.error('Please input a valid SMILES string')
+		st.stop()
 
 	tox21_tasks3, tox21_datasets3, transformers3 = load_tox21_data()
 	model_reload = restore_model()
 
-
-	smiles = [input_smile]
-	featurizer3 = dc.feat.MolGraphConvFeaturizer(use_edges=True)
-	new_smile3 = featurizer3.featurize(smiles)
+	try:
+		smiles = [input_smile]
+		featurizer3 = dc.feat.MolGraphConvFeaturizer(use_edges=True)
+		new_smile3 = featurizer3.featurize(smiles)
+	except:
+		st.error('Failed to featurize input. Check validity of chemical structure and try again.')
+		st.stop()
 	
 	tox21_y_data = load_tox21_y_csv()
 	fps = generate_fingerprints(tox21_y_data)
@@ -166,7 +170,10 @@ if st.session_state['button'] == True:
 	
 	ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
 	ideas_df.reset_index(inplace=True)
-
+	if len(ideas_df) == 0:
+		st.error('Idea generation failed. It may not be possible to fragment your input \
+				  or no (transformation,rule,environment) sets were found. Please try another structure.')
+		st.stop()
 	featurized_ideas = featurizer3.featurize(ideas_df['SMILES'])
 	idea_preds = model_reload.predict_on_batch(featurized_ideas, transformers=transformers3)
 	toxicity_counts = [np.sum(pred>0.6) for pred in idea_preds[:,:,1]]
