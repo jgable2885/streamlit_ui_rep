@@ -173,17 +173,6 @@ if st.session_state['button'] == True:
 		st.write("{} predictions suggest toxicity".format(input_tox_count))
 	st.image(Image.open("sim_grid.png"), caption='Top 3 most similar compounds from Tox21 database')
 	
-	ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
-	ideas_df.reset_index(inplace=True)
-	if len(ideas_df) == 0:
-		st.error('Idea generation failed. It may not be possible to fragment your input \
-				  or no (transformation,rule,environment) sets were found. Please try another structure.')
-		st.stop()
-	featurized_ideas = featurizer3.featurize(ideas_df['SMILES'])
-	idea_preds = model_reload.predict_on_batch(featurized_ideas, transformers=transformers3)
-	toxicity_counts = [np.sum(pred>0.6) for pred in idea_preds[:,:,1]]
-	ideas_df['toxicity_counts'] = toxicity_counts
-	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
 	genre = st.sidebar.radio("How many new ideas would you like to generate?",('None', '1', '3', '5'))
 	
 	if st.sidebar.button('Generate ideas'):
@@ -199,4 +188,18 @@ if st.session_state['button'] == True:
 
 		elif genre == '1':
 			st.write("Let's see ", genre, " alternative ideas!")
-			display_idea_grid(ideas_df, int(genre))	
+			display_idea_grid(ideas_df, int(genre))		
+
+
+	ideas_df = generate_ideas(input_smile, database="AllHepG2.mmpdb")
+	ideas_df.reset_index(inplace=True)
+	if len(ideas_df) == 0:
+		st.error('Idea generation failed. It may not be possible to fragment your input \
+				  or no (transformation,rule,environment) sets were found. Please try another structure.')
+		st.stop()
+	featurized_ideas = featurizer3.featurize(ideas_df['SMILES'])
+	idea_preds = model_reload.predict_on_batch(featurized_ideas, transformers=transformers3)
+	toxicity_counts = [np.sum(pred>0.6) for pred in idea_preds[:,:,1]]
+	ideas_df['toxicity_counts'] = toxicity_counts
+	ideas_df.sort_values(by=['toxicity_counts','sort_by'], ascending=[True,False], inplace=True)
+
