@@ -92,13 +92,14 @@ button1 = st.sidebar.button('Predict Toxicities')
 
 if st.session_state.get('button') != True:
 	st.session_state['button'] = button1 # Saved the state
-
+input_count = 0
 if st.session_state['button'] == True:
 	st.write("Your compound of interest is: ", input_smile)
+	input_count += 1
 	try:
 		input_smile = Chem.CanonSmiles(input_smile)
 		mol = Chem.MolFromSmiles(input_smile)
-		filename = "input_img_tmp.png"
+		filename = "input" + str(input_count) + ".png"
 		Chem.Draw.MolToFile(mol, filename)
 		st.image(Image.open(filename),caption='Compound structure')
 	except:
