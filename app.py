@@ -98,7 +98,7 @@ if st.session_state['button'] == True:
 	try:
 		input_smile = Chem.CanonSmiles(input_smile)
 		mol = Chem.MolFromSmiles(input_smile)
-		filename = "%s%d.png" % ("test", 0)
+		filename = "input_img_tmp.png"
 		Chem.Draw.MolToFile(mol, filename)
 		st.image(Image.open(filename),caption='Compound structure')
 	except:
