@@ -82,8 +82,7 @@ def display_idea_grid(ideas_df, num_ideas):
 	st.image(Image.open("tmp_grid.png"), caption='Idea Structures')
 
 st.sidebar.image(Image.open('./data/logo.png'))
-st.sidebar.markdown('<span style="color:#d9d9d8;font-size:10px">by Amy and Jonathan</span>',
-					unsafe_allow_html=True)
+st.sidebar.caption('by Amy and Jonathan)
 
 
 input_smile = st.sidebar.text_input('Please enter your compound of interest in SMILES format', 'SMILES Input')
