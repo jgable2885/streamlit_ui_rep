@@ -98,14 +98,11 @@ if st.session_state['button'] == True:
 	try:
 		canonInput = Chem.CanonSmiles(input_smile)
 		mol = Chem.MolFromSmiles(canonInput)
+		filename = "%s%d.png" % ("test", 0)
+		Chem.Draw.MolToFile(mol, filename)
+		st.image(Image.open(filename),caption='Compound structure')
 	except:
 		st.error('Please input a valid SMILES string')
-
-	filename = "%s%d.png" % ("test", 0)
-
-	Chem.Draw.MolToFile(mol, filename)
-	st.image(Image.open(filename),caption='Compound structure')
-
 
 	tox21_tasks3, tox21_datasets3, transformers3 = load_tox21_data()
 	model_reload = restore_model()
