@@ -88,9 +88,7 @@ Project Link: https://github.com/luyingamypei/capstone_ui
 
 ## Version History
     
-* 0.1
-    * Initial Release
-    * See [commit change](https://github.com/luyingamypei/capstone_ui/commits/main) or See [release history](https://github.com/luyingamypei/capstone_ui/releases)
+This is the pre-release version. Please see [commit change](https://github.com/luyingamypei/capstone_ui/commits/main).
 
 ## License
 
